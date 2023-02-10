@@ -18,7 +18,7 @@ git clone https://github.com/Mikee-Angelo/lmsc
 
 Switch to the extracted repo folder
 ```
-cd asms-main
+cd lmsc
 ```
 
 Install all the dependencies using composer. __Better to install__ [composer](https://getcomposer.org/download/)
