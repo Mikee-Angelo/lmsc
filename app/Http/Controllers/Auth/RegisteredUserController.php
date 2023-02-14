@@ -18,9 +18,18 @@ class RegisteredUserController extends Controller
     /**
      * Display the registration view.
      */
-    public function create(): View
+    public function create()
     {
-        return view('auth.register');
+        /**
+         * Check if there is a registered user
+         * If there is registered user therefore it will be redirected to
+         * login page
+         */
+        $user = User::take(1)->first();
+
+        if(is_null($user)) return view('auth.register');
+
+        return redirect('/login');
     }
 
     /**
