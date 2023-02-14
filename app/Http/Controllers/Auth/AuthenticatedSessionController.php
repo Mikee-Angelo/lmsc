@@ -9,14 +9,24 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
+use App\Models\User;
 
 class AuthenticatedSessionController extends Controller
 {
     /**
      * Display the login view.
      */
-    public function create(): View
+    public function create()
     {
+        /**
+         * Check if there is a registered user
+         * If there is registered user therefore it will be redirected to
+         * login page
+         */
+        $user = User::take(1)->first();
+
+        if(is_null($user)) return redirect('register');
+
         return view('auth.login');
     }
 
