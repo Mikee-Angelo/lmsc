@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "e36520766d7a2bdb9df876e2f3584a13",
+    "content-hash": "4353ed4db3791e9ab96980de493daadf",
     "packages": [
         {
             "name": "bacon/bacon-qr-code",
@@ -5931,6 +5931,64 @@
         }
     ],
     "packages-dev": [
+        {
+            "name": "arielmejiadev/jetbar",
+            "version": "3.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/ArielMejiaDev/jetbar.git",
+                "reference": "f554436a884220e1995c8dc6eddd66e94090c29f"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/ArielMejiaDev/jetbar/zipball/f554436a884220e1995c8dc6eddd66e94090c29f",
+                "reference": "f554436a884220e1995c8dc6eddd66e94090c29f",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/filesystem": "^8.0|^9.0",
+                "illuminate/support": "^8.0|^9.0",
+                "php": "^7.3|^8.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Arielmejiadev\\Jetbar\\JetbarServiceProvider"
+                    ],
+                    "aliases": {
+                        "Jetbar": "Arielmejiadev\\Jetbar\\JetbarFacade"
+                    }
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Arielmejiadev\\Jetbar\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Ariel Mejia Dev",
+                    "email": "arielmejiadev@gmail.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "It adds a sidebar dashboard theme for Laravel applications with Jetstream.",
+            "homepage": "https://github.com/arielmejiadev/jetbar",
+            "keywords": [
+                "arielmejiadev",
+                "jetbar"
+            ],
+            "support": {
+                "issues": "https://github.com/ArielMejiaDev/jetbar/issues",
+                "source": "https://github.com/ArielMejiaDev/jetbar/tree/3.0.0"
+            },
+            "time": "2022-09-18T16:58:57+00:00"
+        },
         {
             "name": "doctrine/instantiator",
             "version": "2.0.0",
