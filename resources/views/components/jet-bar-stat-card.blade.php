@@ -10,7 +10,7 @@
 <div {{ $attributes->merge(['class' => "flex items-center p-4 rounded-md shadow-xs dark:bg-gray-800 " . $colors[$type ?? 'info']])}}>
     
     <div class="w-full">
-        <div class="flex flex-row items-start justify-between mb-3">
+        <div class="flex flex-row items-start justify-between mb-1">
             <p class="text-3xl font-semibold text-white">
                 {{ $number }}
             </p>
