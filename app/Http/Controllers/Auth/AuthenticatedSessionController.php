@@ -25,7 +25,7 @@ class AuthenticatedSessionController extends Controller
          */
         $user = User::take(1)->first();
 
-        if(!is_null($user)) return redirect('/register');
+        if(is_null($user)) return redirect('/register');
 
         return view('auth.login');
     }
