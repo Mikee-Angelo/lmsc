@@ -11,10 +11,16 @@
     <!-- Fonts -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap">
 
+    <!-- Simple Notify Toaster Notification -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/simple-notify@0.5.5/dist/simple-notify.min.css" />
+    
     @livewireStyles
 
     <!-- Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
+
+    <!-- Simple Notify Toaster Notification -->
+    <script src="https://cdn.jsdelivr.net/npm/simple-notify@0.5.5/dist/simple-notify.min.js"></script>
     
 </head>
 <body class="font-sans antialiased bg-gray-100">
@@ -52,9 +58,27 @@
 @stack('modals')
 
 @livewireScripts
-</body>
-)
 
-        @livewireScripts
-    </body>
+<script>
+    window.addEventListener('success', event => {
+        let { type, title, text} = event.detail;
+        
+        new Notify({
+            status: type ,
+            title: title ,
+            text: text,
+            effect: 'fade',
+            speed: 300,
+            showIcon: true,
+            showCloseButton: true,
+            autoclose: true,
+            autotimeout: 3000,
+            gap: 20,
+            distance: 20,
+            type: 1,
+            position: 'right top'
+        });
+    })
+</script>
+</body>
 </html>
