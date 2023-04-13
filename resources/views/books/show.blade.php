@@ -10,19 +10,20 @@
             
             <x-jet-bar-stats-container>
                 <livewire:stat-card.book-stat />
-
+                    
                 <x-jet-bar-stat-card title="No. of Borrowed Books" number="0" type="success">
                     <x-jet-bar-icon type="users" fill />
                 </x-jet-bar-stat-card>
-
+                
                 <x-jet-bar-stat-card title="No. of Returned Books" number="0" type="warning">
                     <x-jet-bar-icon type="users" fill />
                 </x-jet-bar-stat-card>
             </x-jet-bar-container>
-
-
-            <livewire:book.create />
-
+            
+            @if (auth()->user()->hasDirectPermission('create books'))
+                <livewire:book.create />
+            @endif
+            
             <livewire:tables.book-table />
         </div>
     </div>
