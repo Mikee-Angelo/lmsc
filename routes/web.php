@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\BookController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\PenaltyController;
 use Illuminate\Support\Facades\Route;
 /*
 |--------------------------------------------------------------------------
@@ -31,6 +32,10 @@ Route::middleware('auth')->group(function () {
 
     Route::controller(UserController::class)->prefix('users')->group(function() { 
         Route::get('/', 'show')->name('users.show');
+    });
+
+    Route::controller(PenaltyController::class)->prefix('penalties')->group(function() { 
+        Route::get('/', 'show')->name('penalty.show');
     });
 });
 

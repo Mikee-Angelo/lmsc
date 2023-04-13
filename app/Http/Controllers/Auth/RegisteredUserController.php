@@ -12,8 +12,9 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
 use Illuminate\View\View;
+use Illuminate\Support\Facades\DB;
+use App\Models\Penalty;
 use Spatie\Permission\Models\Permission;
-
 class RegisteredUserController extends Controller
 {
     /**
@@ -40,11 +41,15 @@ class RegisteredUserController extends Controller
      */
     public function store(Request $request): RedirectResponse
     {
-        $request->validate([
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:'.User::class],
-            'password' => ['required', 'confirmed', Rules\Password::defaults()],
-        ]);
+        try {
+            DB::beginTransaction();
+            
+            $request->validate([
+                'name' => ['required', 'string', 'max:255'],
+                'email' => ['required', 'string', 'email', 'max:255', 'unique:'.User::class],
+                'password' => ['required', 'confirmed', Rules\Password::defaults()],
+            ]);
+
 
         $user = User::create([
             'name' => $request->name,
@@ -54,12 +59,37 @@ class RegisteredUserController extends Controller
         
         $user->givePermissionTo(Permission::all());
 
-        $user->assignRole('Admin'); 
-        
-        event(new Registered($user));
 
-        Auth::login($user);
+            $user->assignRole('Admin'); 
+            
 
-        return redirect(RouteServiceProvider::HOME);
+            $penalties = [
+                [
+                    'name' => 'Overdue Penalty', 
+                    'fee' => 0,
+                    'created_by' => $user->id,
+                ],
+                [
+                    'name' => 'Unreturned Penalty', 
+                    'fee' => 0,
+                    'created_by' => $user->id,
+                ],
+            ];
+
+            foreach($penalties as $penalty) { 
+                $p = new Penalty($penalty);
+                $p->save(); 
+            }
+
+            event(new Registered($user));
+
+            Auth::login($user);
+
+            DB::commit();
+
+            return redirect(RouteServiceProvider::HOME);
+        } catch (e) { 
+            DB::rollback();
+        }
     }
 }
