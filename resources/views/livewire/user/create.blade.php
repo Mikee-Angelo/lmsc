@@ -9,8 +9,10 @@
             <x-slot name="title">
                 {{ __('Add New User') }}
             </x-slot>
-
+    
             <x-slot name="content">
+
+                <h3 class="mt-4 text-lg font-medium text-gray-900">Information</h3>
                 {{-- Full Name --}}
                 <div class="mt-4">
                     <x-input-label for="name" :value="__('Full Name')" />
@@ -33,6 +35,29 @@
                     <x-text-input id="password" name="password" type="password" class="block w-full mt-1"
                         :value="old('password', $password)" wire:model="password" required  />
                     <x-input-error class="mt-2" for="password" />
+                </div>
+                
+                <div class="mt-4">
+                    <x-input-label for="role" :value="__('Select Role')"/>
+                    <select id="role" wire:model="selectedRole" name="role" wire:change="$emit('loadSelectedRolePermissions')"
+                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 mt-1">
+                        @foreach ($roles as $role)
+                            <option value="{{ $role->id }}">{{ $role->name }}</option>
+                        @endforeach
+                    </select>
+                </div>
+                
+                <h3 class="mt-4 text-lg font-medium text-gray-900">Permissions</h3>
+
+                <div class="mt-4">
+                    @foreach ($permissions as $permission)
+                        <label class="flex my-2">
+                            <input class="inline-block" wire:model="selectedPermissions" value="{{ $permission->id }}" type="checkbox">
+                            <span class="inline-block text-sm ml-7">
+                                {{  $permission->name }}
+                            </span>
+                        </label>
+                    @endforeach
                 </div>
             </x-slot>
 
