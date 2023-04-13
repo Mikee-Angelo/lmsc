@@ -7,10 +7,13 @@
 
     <div>
         <div class="py-10 mx-auto max-w-7xl sm:px-6 lg:px-8">
-            <livewire:user.create/>
-            <livewire:tables.users-table class="" />
+            
+            @if (auth()->user()->hasDirectPermission('create account'))
+                <livewire:user.create />
+            @endif
+
+            <livewire:tables.users-table />
         </div>
     </div>
-
 
 </x-app-layout>
