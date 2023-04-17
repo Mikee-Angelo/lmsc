@@ -45,7 +45,6 @@ class Setup extends Command
             if(File::exists('.env')) { 
                 $this->call('migrate:refresh');
                 $this->call('db:seed');
-                $this->call('serve');
             }
        } catch (Exception $e) { 
             $this->error($e);
