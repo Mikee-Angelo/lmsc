@@ -21,6 +21,10 @@ class Create extends Component
         $this->confirmingStudentCreate = true;
 
         //Resets the field of the form 
+        $this->removeFile();
+    }
+
+    public function removeFile() {
         $this->excel = null; 
     }
 
@@ -43,7 +47,12 @@ class Create extends Component
                 ]);
             }
 
+            $this->removeFile();
+
         } catch (Exception $e) { 
+            $this->confirmingStudentCreate = false;
+            $this->removeFile();
+
              $this->dispatchBrowserEvent('error', [
                 'type' => 'error',
                 'title' => 'Error',
