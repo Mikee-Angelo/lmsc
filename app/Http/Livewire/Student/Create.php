@@ -30,11 +30,18 @@ class Create extends Component
         
             $e = Excel::import(new StudentImport, $this->excel);
 
-            $this->dispatchBrowserEvent('success', [
-                'type' => 'success',
-                'title' => 'Success',
-                'text' => 'Book added successfully'
-            ]);
+            if(isset($e)) { 
+                //Refreshes the livewire datatable
+                $this->emit('refreshLivewireDatatable');
+
+                $this->confirmingStudentCreate = false;
+
+                $this->dispatchBrowserEvent('success', [
+                    'type' => 'success',
+                    'title' => 'Success',
+                    'text' => 'Imported successfully'
+                ]);
+            }
 
         } catch (Exception $e) { 
              $this->dispatchBrowserEvent('error', [
