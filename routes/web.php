@@ -5,6 +5,7 @@ use App\Http\Controllers\BookController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\PenaltyController;
 use App\Http\Controllers\RoleController;
+use App\Http\Controllers\StudentController;
 use Illuminate\Support\Facades\Route;
 /*
 |--------------------------------------------------------------------------
@@ -42,6 +43,11 @@ Route::middleware('auth')->group(function () {
     Route::controller(RoleController::class)->prefix('role')->group(function() { 
         Route::get('/', 'show')->name('role.show');
     });
+
+    Route::controller(StudentController::class)->prefix('student')->group(function() { 
+        Route::get('/', 'show')->name('student.show');
+    });
+
 });
 
 require __DIR__.'/auth.php';
