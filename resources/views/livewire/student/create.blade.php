@@ -27,9 +27,25 @@
                                 or drag and drop</p>
                             <p class="text-xs text-gray-500 dark:text-gray-400">XLSX, XLS, CSV</p>
                         </div>
-                        <input wire:model='excel' id="dropzone-file" type="file" class="hidden" />
+                        <input wire:model='excel' id="dropzone-file" type="file" class="hidden" accept=".csv,.xlsx,.xls"/>
                     </label>
                 </div>
+
+                @if ($excel)
+                    <div class="flex mt-5">
+                        <div class="h-30 w-30">
+                            <img src="{{ asset('/img/spreadsheet.png') }}" class="object-cover w-24 h-24">
+                        </div>
+                       <div>
+                        <p>{{ $excel }}</p>
+                        
+                        <!-- Using utilities: -->
+                        <button class="px-4 py-2 mt-3 font-bold text-white bg-red-500 rounded hover:bg-red-700" wire:click='removeFile'>
+                            Remove
+                        </button>
+                       </div>
+                    </div>
+                @endif
             </x-slot>
 
             <x-slot name="footer">

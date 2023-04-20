@@ -33,9 +33,8 @@ class StudentTable extends LivewireDatatable
                 ->label('Year/Level'),
             Column::name('student.status')
                 ->label('Status'),
-            Column::name('student.created_at')
+            Column::name('created_at')
                 ->label('Date Added')
-                ->searchable(),
         ];
     }
 }
