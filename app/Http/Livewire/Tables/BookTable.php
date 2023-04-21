@@ -9,7 +9,9 @@ use Mediconesystems\LivewireDatatables\Column;
 
 class BookTable extends LivewireDatatable
 {
-    public $model = Book::class;
+    public function builder() { 
+        return Book::with('transactions');
+    }
 
     public function columns()
     {
@@ -29,6 +31,9 @@ class BookTable extends LivewireDatatable
             Column::name('created_at')
                 ->label('Date Added')
                 ->searchable(),
+            Column::callback(['id', 'title'], function ($id, $title) {
+                return view('table-actions', ['id' => $id, 'title' => $title]);
+            })->unsortable()
         ];
     }
 }

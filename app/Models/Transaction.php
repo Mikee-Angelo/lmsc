@@ -4,13 +4,13 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use App\Models\Transaction;
+use App\Models\Book; 
 
-class Book extends Model
+class Transaction extends Model
 {
     use HasFactory;
 
-    public function transactions() {
-        return $this->hasMany(Transaction::class, 'book_id');
+    public function book() { 
+        return $this->belongsTo(Book::class);
     }
 }
