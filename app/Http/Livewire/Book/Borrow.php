@@ -9,11 +9,14 @@ use App\Models\StudentId;
 use App\Models\Student; 
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Book; 
+
 class Borrow extends Component
 {   
     public Transaction $transaction;
     public Student $student;
     public StudentId $student_id;
+    public Book $book;
     public $confirmingTransactionCreate = false;
     public $book_id;
     public $hasTransaction = false;
@@ -37,6 +40,7 @@ class Borrow extends Component
         $this->student_id = new StudentId();
         $this->student = new Student();
         $this->transaction = new Transaction();
+        $this->book =  Book::where('id', $this->book_id)->first();
 
         $this->checkBorrow();
     }
@@ -56,7 +60,6 @@ class Borrow extends Component
     }
 
     public function onSearch()  { 
-
         $this->validate([
             'student_id.student_number' => 'required|string|exists:student_ids,student_number',
         ]); 
