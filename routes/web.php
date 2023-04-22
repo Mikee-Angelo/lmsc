@@ -6,6 +6,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\PenaltyController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\StudentController;
+use App\Http\Controllers\AuthorController;
 use Illuminate\Support\Facades\Route;
 /*
 |--------------------------------------------------------------------------
@@ -46,6 +47,10 @@ Route::middleware('auth')->group(function () {
 
     Route::controller(StudentController::class)->prefix('student')->group(function() { 
         Route::get('/', 'show')->name('student.show');
+    });
+
+    Route::controller(AuthorController::class)->prefix('authors')->group(function() { 
+        Route::get('/', 'show')->name('authors.show');
     });
 
 });
