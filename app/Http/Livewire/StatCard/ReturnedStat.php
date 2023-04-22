@@ -7,7 +7,6 @@ use App\Models\Transaction;
 class ReturnedStat extends Component
 {
     public $count = 0; 
-    public Transaction $transaction;
     protected $listeners = ['updateReturnedCount'] ;
 
     public function render()
@@ -16,11 +15,11 @@ class ReturnedStat extends Component
     }
 
     public function mount() { 
-        $this->transaction = new Transaction(); 
-
+        
+        $this->updateReturnedCount();
     }
 
     public function updateReturnedCount() { 
-        $this->count = $this->transaction->where('returned_at', '!=', null)->count();
+        $this->count = Transaction::where('returned_at', '!=', null)->count();
     }
 }

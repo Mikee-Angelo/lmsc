@@ -97,6 +97,9 @@ class Borrow extends Component
 
             $this->checkBorrow();
 
+            //Emit changes on the available book 
+            $this->emit('updateAvailableCount');
+
             $this->dispatchBrowserEvent('success', [
                 'type' => 'success',
                 'title' => 'Success',
