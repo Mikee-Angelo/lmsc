@@ -7,6 +7,7 @@ use App\Http\Controllers\PenaltyController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\AuthorController;
+use App\Http\Controllers\LibraryCardController;
 use Illuminate\Support\Facades\Route;
 /*
 |--------------------------------------------------------------------------
@@ -52,6 +53,8 @@ Route::middleware('auth')->group(function () {
     Route::controller(AuthorController::class)->prefix('authors')->group(function() { 
         Route::get('/', 'show')->name('authors.show');
     });
+
+    Route::get('/student/{student}/lc/generate', [LibraryCardController::class, 'show'])->name('lc.show');
 
 });
 
