@@ -6,9 +6,11 @@
             {{ __('Borrow Book') }}
         </x-primary-button>
     @else
-        <x-danger-button type="button" class="mb-4" wire:loading.attr='disabled'>
+        {{-- <x-danger-button type="button" class="mb-4" wire:loading.attr='disabled'>
             {{ __('Return Book') }}
-        </x-danger-button>
+        </x-danger-button> --}}
+
+        @livewire('book.returned', ['book_id' => $book_id])
     @endif
 
     <form wire:submit.prevent="submit">

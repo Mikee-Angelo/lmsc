@@ -33,10 +33,10 @@ class Borrow extends Component
         return view('livewire.book.borrow');
     }
 
-    public function mount(StudentId $student_id, Student $student, Transaction $transaction) { 
-        $this->student_id = $student_id;
-        $this->student = $student;
-        $this->transaction = $transaction;
+    public function mount() { 
+        $this->student_id = new StudentId();
+        $this->student = new Student();
+        $this->transaction = new Transaction();
 
         $this->checkBorrow();
     }

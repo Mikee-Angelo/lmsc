@@ -7,7 +7,7 @@ use App\Models\Transaction;
 class ReturnedStat extends Component
 {
     public $count = 0; 
-    private Transaction $transaction;
+    public Transaction $transaction;
     protected $listeners = ['updateReturnedCount'] ;
 
     public function render()
@@ -15,10 +15,9 @@ class ReturnedStat extends Component
         return view('livewire.stat-card.returned-stat');
     }
 
-    public function mount(Transaction $transaction) { 
-        $this->transaction = $transaction; 
+    public function mount() { 
+        $this->transaction = new Transaction(); 
 
-        $this->updateReturnedCount();
     }
 
     public function updateReturnedCount() { 
