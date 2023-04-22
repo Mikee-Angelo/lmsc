@@ -20,5 +20,6 @@ class StudentId extends Model
     public function student_latest() { 
         return $this->hasOne(Student::class, 'student_id');
     }
+    
 
 }
