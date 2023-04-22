@@ -51,6 +51,9 @@ class Create extends Component
             //Emit changes on the book count
             $this->emit('updateBookCount');
 
+            //Emit changes on the available book 
+            $this->emit('updateAvailableCount');
+
             //Closes the modal 
             $this->confirmingBookCreate = false;
 
