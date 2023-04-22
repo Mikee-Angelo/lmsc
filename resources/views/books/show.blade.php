@@ -10,10 +10,12 @@
             
             <x-jet-bar-stats-container>
                 <livewire:stat-card.book-stat />
-                    
+                
+                <livewire:stat-card.available-stat />
+                
                 <livewire:stat-card.borrowed-stat />
                 
-                <livewire:stat-card.returned-stat />
+                <livewire:stat-card.returned-stat /> 
             </x-jet-bar-container>
             
             @if (auth()->user()->hasDirectPermission('create books'))
