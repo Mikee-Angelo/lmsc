@@ -34,7 +34,10 @@ class StudentTable extends LivewireDatatable
             Column::name('student.status')
                 ->label('Status'),
             Column::name('created_at')
-                ->label('Date Added')
+                ->label('Date Added'),
+            Column::callback(['id'], function ($id) {
+                return view('table-actions.student', ['id' => $id]);
+            })->unsortable()
         ];
     }
 }
