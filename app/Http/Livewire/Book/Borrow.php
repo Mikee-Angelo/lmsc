@@ -7,6 +7,7 @@ use App\Models\Transaction;
 use App\Models\User;
 use App\Models\StudentId; 
 use App\Models\Student; 
+use App\Models\Book; 
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 class Borrow extends Component
@@ -14,6 +15,7 @@ class Borrow extends Component
     public Transaction $transaction;
     public Student $student;
     public StudentId $student_id;
+    public Book $book;
     public $confirmingTransactionCreate = false;
     public $book_id;
     public $hasTransaction = false;
@@ -37,8 +39,10 @@ class Borrow extends Component
         $this->student_id = new StudentId();
         $this->student = new Student();
         $this->transaction = new Transaction();
+        $this->book = new Book();
 
         $this->checkBorrow();
+        $this->checkSelectedBook();
     }
 
     private function checkBorrow() { 
@@ -46,6 +50,12 @@ class Borrow extends Component
             ['book_id','=', $this->book_id],
             ['returned_at','=', null]
         ])->exists();
+    }
+
+    private function checkSelectedBook() { 
+        if(!$this->hasTransaction) { 
+            $this->book = Book::findOrFail($this->book_id);
+        }
     }
  
     public function confirmTransactionCreate() { 
