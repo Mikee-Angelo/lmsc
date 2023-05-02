@@ -32,6 +32,6 @@ class RoleSeeder extends Seeder
 
         $assistantRole = Role::create(['name' => 'Assistant Librarian']);
         
-        $assistantRole->givePermissionTo([$p0, $p1, $p2,  $p3]);
+        $assistantRole->givePermissionTo(Permission:all());
     }
 }
