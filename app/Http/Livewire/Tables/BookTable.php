@@ -32,7 +32,7 @@ class BookTable extends LivewireDatatable
                 ->label('Date Added')
                 ->searchable(),
             Column::callback(['id', 'title'], function ($id, $title) {
-                return view('table-actions', ['id' => $id, 'title' => $title]);
+                return view('table-actions.book', ['id' => $id, 'title' => $title]);
             })->unsortable()
         ];
     }

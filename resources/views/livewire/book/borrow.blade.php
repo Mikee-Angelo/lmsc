@@ -2,8 +2,8 @@
     {{-- If your happiness depends on money, you will never be happy with yourself. --}}
 
     @if (!$hasTransaction)
-        <x-primary-button type="button" class="mb-4" wire:loading.attr='disabled' wire:click='confirmTransactionCreate'>
-            {{ __('Borrow Book') }}
+        <x-primary-button type="button" class="mb-4 bg-emerald-700" wire:loading.attr='disabled' wire:click='confirmTransactionCreate'>
+            {{ __('Borrow') }}
         </x-primary-button>
     @else
         {{-- <x-danger-button type="button" class="mb-4" wire:loading.attr='disabled'>
