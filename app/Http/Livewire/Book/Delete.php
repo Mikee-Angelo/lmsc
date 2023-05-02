@@ -1,40 +1,41 @@
 <?php
 
-namespace App\Http\Livewire\Author;
+namespace App\Http\Livewire\Book;
 
 use Livewire\Component;
-use App\Models\Author; 
+use App\Models\Transaction;
+use App\Models\Book;
 
 class Delete extends Component
 {
-    public $author_id; 
-    public $name;
-    public $confirmingAuthorDelete = false;
+    public $book_id; 
+    public $title;
+    public $confirmingBookDelete = false;
 
     public function render()
     {
-        return view('livewire.author.delete');
+        return view('livewire.book.delete');
     }
 
-    public function confirmAuthorDelete() { 
-        $this->confirmingAuthorDelete = true;
+    public function confirmBookDelete() { 
+        $this->confirmingBookDelete = true;
     }
 
     public function submit() { 
        try { 
-            $saved = Author::where('id', $this->author_id)->delete(); 
+            $saved = Book::where('id', $this->book_id)->delete(); 
 
             if($saved) { 
             //Refreshes the livewire datatable
                 $this->emit('refreshLivewireDatatable');
         
                 //Closes the modal 
-                $this->confirmingAuthorDelete = false;
+                $this->confirmingBookDelete = false;
 
                 $this->dispatchBrowserEvent('success', [
                     'type' => 'success',
                     'title' => 'Success',
-                    'text' => 'Author delete successfully'
+                    'text' => 'Book deleted successfully'
                 ]);
             } else { 
                 throw new Exception("Something went wrong");
