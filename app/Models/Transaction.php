@@ -20,7 +20,7 @@ class Transaction extends Model
         return $this->belongsTo(StudentId::class, 'student_id');
     }
 
-    public function approved_by() { 
+    public function approver() { 
         return $this->belongsTo(User::class, 'approved_by');
     }
 }
