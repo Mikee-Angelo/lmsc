@@ -134,7 +134,7 @@
                     {{-- Date --}}
                     <div>
                         <x-input-label for="name" :value="__('Approved By')" />
-                        <x-text-input id="name" type="text" class="block w-full mt-1" value="{{ $transaction->approved_by }}" disabled />
+                        <x-text-input id="name" type="text" class="block w-full mt-1" value="{{ $transaction->approver->name }}" disabled />
                     </div>
                 </div>
                 
