@@ -18,30 +18,27 @@
                 
                 {{-- Name --}}
                 <div class="mt-5">
-                    <x-input-label for="name" :value="__('Student Name')" />
-                    <x-text-input id="name" type="text" class="block w-full mt-1" value="{{ $transaction->student_number->student_latest->name }}" disabled />
+                    <x-input-label for="name" :value="__('Student Name:')" />
+                    <p class="text-base text-gray-90">{{ $transaction->student_number->student_latest->name }}</p>
                 </div>
                 
-                <div class="flex flex-row w-full mt-5 space-x-3">
+                <div class="grid grid-cols-4 gap-4 mt-5">
                     {{-- Course --}}
                     <div>
-                        <x-input-label for="course" :value="__('Course')" />
-                        <x-text-input id="course" type="text" class="block w-full mt-1" value="{{ $transaction->student_number->student_latest->course }}"
-                            disabled />
+                        <x-input-label for="course" :value="__('Course:')" />
+                        <p class="text-base text-gray-90">{{ $transaction->student_number->student_latest->course }}</p>
                     </div>
     
                     {{-- Year Level --}}
                     <div>
-                        <x-input-label for="year_level" :value="__('Year/Level')" />
-                        <x-text-input id="year_level" type="text" class="block w-full mt-1" value="{{ $transaction->student_number->student_latest->yearLevel }}"
-                            disabled />
+                        <x-input-label for="year_level" :value="__('Year/Level:')" />
+                        <p class="text-base text-gray-90">{{ $transaction->student_number->student_latest->yearLevel }}</p>
                     </div>
     
                     {{-- Status --}}
                     <div>
-                        <x-input-label for="status" :value="__('Status')" />
-                        <x-text-input id="status" type="text" class="block w-full mt-1" value="{{ $transaction->student_number->student_latest->status }}"
-                            disabled />
+                        <x-input-label for="status" :value="__('Status:')" />
+                        <p class="text-base text-gray-90">{{ $transaction->student_number->student_latest->status }}</p>
                     </div>
     
                 </div>
@@ -55,64 +52,60 @@
     
                 {{-- Title --}}
                 <div>
-                    <x-input-label for="title" :value="__('Title')" />
-                    <x-text-input id="title" name="title" type="text" class="block w-full mt-1"
-                        value="{{ $transaction->book->title }}" disabled />
+                    <x-input-label for="title" :value="__('Title:')" />
+                    <p class="text-base text-gray-90">{{ $transaction->book->title }}</p>
                 </div>
                 
                 {{-- Description --}}
-                <div class="mt-4">
-                    <x-input-label for="description" :value="__('Description')" />
-                    <x-text-input id="description" name="description" type="text" class="block w-full mt-1" value="{{ $transaction->book->description }}" disabled />
+                <div class="mt-5">
+                    <x-input-label for="description" :value="__('Description:')" />
+                    <p class="text-base text-gray-90">{{ $transaction->book->description }}</p>
                 </div>
                 
-                <div class="flex flex-row mt-4 space-x-5">
+                <div class="grid grid-cols-4 gap-4 mt-5">
                     {{-- Edition --}}
-                    <div >
-                        <x-input-label for="edition" :value="__('Edition')" />
-                        <x-text-input id="edition" name="edition" type="number" class="block w-full mt-1"
-                            value="{{ $transaction->book->edition }}" disabled />
+                    <div>
+                        <x-input-label for="edition" :value="__('Edition:')" />
+                        <p class="text-base text-gray-90">{{ $transaction->book->edition }}</p>
                     </div>
                     
                     {{-- ISBN --}}
-                    <div >
-                        <x-input-label for="isbn" :value="__('ISBN')" />
-                        <x-text-input id="isbn" name="isbn" type="text" class="block w-full mt-1" value="{{ $transaction->book->isbn }}"
-                            disabled />
+                    <div>
+                        <x-input-label for="isbn" :value="__('ISBN:')" />
+                        <p class="text-base text-gray-90">{{ $transaction->book->isbn }}</p>
                     </div>
 
                     {{-- Copyright Year --}}
                     <div>
-                        <x-input-label for="copyright_year" :value="__('Copyright Year')" />
-                        <x-text-input id="copyright_year" name="copyright_year" type="number" class="block w-full mt-1"
-                            value="{{ $transaction->book->copyright_year }}" disabled />
+                        <x-input-label for="copyright_year" :value="__('Copyright Year:')" />
+                        <p class="text-base text-gray-90">{{ $transaction->book->copyright_year }}</p>
+                            
                     </div>
                 </div>
                 
                 {{-- Number of Pages --}}
-              <div class="flex flex-row mt-4 space-x-5">
+              <div class="grid grid-cols-4 gap-4 mt-5">
                 <div>
-                    <x-input-label for="pages" :value="__('No. of Pages')" />
-                    <x-text-input id="pages" name="pages" type="number" class="block w-full mt-1" value="{{ $transaction->book->pages }}" disabled />
+                    <x-input-label for="pages" :value="__('No. of Pages:')" />
+                    <p class="text-base text-gray-90">{{ $transaction->book->pages }}</p>
                 </div>
                 
                 {{-- Height --}}
                 <div>
-                    <x-input-label for="height" :value="__('Height')" />
-                    <x-text-input id="height" name="height" type="number" class="block w-full mt-1"
-                        value="{{ $transaction->book->height }}" disabled/>
+                    <x-input-label for="height" :value="__('Height:')" />
+                    <p class="text-base text-gray-90">{{ $transaction->book->height }}</p>
                 </div>
                 
                 {{-- Width --}}
                 <div>
-                    <x-input-label for="width" :value="__('Width')" />
-                    <x-text-input id="width" name="width" type="number" class="block w-full mt-1" value="{{ $transaction->book->width }}" disabled/>
+                    <x-input-label for="width" :value="__('Width:')" />
+                    <p class="text-base text-gray-90">{{ $transaction->book->width }}</p>
                 </div>
                 
                 {{-- Depth --}}
-                <div >
-                    <x-input-label for="depth" :value="__('Depth')" />
-                    <x-text-input id="depth" name="depth" type="number" class="block w-full mt-1" value="{{ $transaction->book->depth }}" disabled/>
+                <div>
+                    <x-input-label for="depth" :value="__('Depth:')" />
+                    <p class="text-base text-gray-90">{{ $transaction->book->depth }}</p>
                 </div>
               </div>
 
@@ -124,17 +117,17 @@
                 </h2>
 
 
-               <div class="flex flex-row mt-4 space-x-5">
+               <div class="grid grid-cols-2 gap-2 mt-5">
                    {{-- Date --}}
                     <div>
                         <x-input-label for="name" :value="__('Date of Transaction')" />
-                        <x-text-input id="name" type="text" class="block w-full mt-1" value="{{ $transaction->created_at }}" disabled />
+                        <p class="text-base text-gray-90">{{ $transaction->created_at }}</p>
                     </div>
 
                     {{-- Date --}}
                     <div>
                         <x-input-label for="name" :value="__('Approved By')" />
-                        <x-text-input id="name" type="text" class="block w-full mt-1" value="{{ $transaction->approver->name }}" disabled />
+                        <p class="text-base text-gray-90">{{ $transaction->approver->name }}</p>
                     </div>
                 </div>
                 
