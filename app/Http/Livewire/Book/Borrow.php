@@ -24,6 +24,7 @@ class Borrow extends Component
         'book_id' => 'required|exists:books,id',
         'student_id.student_number' => 'required|string|exists:student_ids,student_number',
         'transaction.notes' => 'nullable|string',
+        'transaction.notes' => 'required|string',
         'student.name' => 'string',
         'student.course' => 'string',
         'student.yearLevel' => 'string',

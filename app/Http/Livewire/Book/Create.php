@@ -11,6 +11,7 @@ class Create extends Component
     public $confirmingBookCreate = false;
 
     protected $rules = [
+        'book.accession_number' => 'required|string',
         'book.title' => 'required|string',
         'book.description' => 'required|string',
         'book.edition' => 'required|numeric', 
