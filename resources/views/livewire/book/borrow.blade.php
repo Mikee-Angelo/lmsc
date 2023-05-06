@@ -128,6 +128,15 @@
                         </div>
                     </div>
 
+                    {{-- Title --}}
+                    <x-input-label for="name" :value="__('Duration (days)')" />
+                    
+                    <div class="flex flex-row mt-1">
+                        <x-text-input id="duration" name="duration" type="text" class="block w-full"
+                            :value="old('transaction.duration', $student_id->student_number)" placeholder="Default is 1 day..." wire:model="transaction.duration"
+                            required />
+                    </div>
+
                     <label for="notes" class="block mt-5 mb-2 text-sm font-medium text-gray-900 dark:text-white">Add Note:</label>
                     <textarea id="notes" rows="4"
                         class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
