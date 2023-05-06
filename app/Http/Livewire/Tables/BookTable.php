@@ -19,6 +19,9 @@ class BookTable extends LivewireDatatable
             NumberColumn::name('id')
                 ->defaultSort('desc')
                 ->label('ID'),
+            Column::name('accession_number')
+                ->searchable()
+                ->label('Accession #'),
             Column::name('title')
                 ->searchable(),
             Column::name('description')
