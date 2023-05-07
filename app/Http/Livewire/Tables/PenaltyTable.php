@@ -32,6 +32,13 @@ class PenaltyTable extends LivewireDatatable
             Column::name('created_at')
                 ->label('Date Added')
                 ->searchable(),
+            Column::callback(['id', 'name'], function ($id, $name) {
+                $except = collect([1, 2]); 
+
+                if(!$except->contains($id)) { 
+                    return view('table-actions.penalty', ['id' => $id, 'name' => $name]);
+                } 
+            })->unsortable()
         ];
     }
 }
