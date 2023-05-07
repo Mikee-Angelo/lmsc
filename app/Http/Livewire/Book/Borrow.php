@@ -23,8 +23,8 @@ class Borrow extends Component
     protected $rules = [ 
         'book_id' => 'required|exists:books,id',
         'student_id.student_number' => 'required|string|exists:student_ids,student_number',
+        'transaction.duration' => 'nullable|string',
         'transaction.notes' => 'nullable|string',
-        'transaction.notes' => 'required|string',
         'student.name' => 'string',
         'student.course' => 'string',
         'student.yearLevel' => 'string',
@@ -92,10 +92,13 @@ class Borrow extends Component
     public function submit() { 
         $this->validate();   
 
+        $duration = $this->trasaction->duration ?? 1;
+
         $this->transaction->book_id = $this->book_id;
         $this->transaction->student_id = $this->student->student_id;
+        $this->transaction->duration = $duration; 
         $this->transaction->approved_by = Auth::id();
-        $this->transaction->ends_at = Carbon::now()->addDays(1);
+        $this->transaction->ends_at = Carbon::now()->addDays($duration);
         
         $saved = $this->transaction->save();
 

@@ -128,13 +128,19 @@
                         </div>
                     </div>
 
+                    <hr class="h-px my-5 bg-gray-200 border-0 dark:bg-gray-700">
+
+                    {{-- Transaction Details --}}
+                    <h2 class="mb-5 text-lg font-medium leading-tight text-gray-800">
+                        {{ __('Transaction Details') }}
+                    </h2>
+                    
                     {{-- Title --}}
                     <x-input-label for="name" :value="__('Duration (days)')" />
                     
                     <div class="flex flex-row mt-1">
                         <x-text-input id="duration" name="duration" type="text" class="block w-full"
-                            :value="old('transaction.duration', $student_id->student_number)" placeholder="Default is 1 day..." wire:model="transaction.duration"
-                            required />
+                            :value="old('transaction.duration', $transaction->duration)" placeholder="Default is 1 day..." wire:model="transaction.duration" value="1"/>
                     </div>
 
                     <label for="notes" class="block mt-5 mb-2 text-sm font-medium text-gray-900 dark:text-white">Add Note:</label>

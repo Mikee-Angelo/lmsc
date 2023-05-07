@@ -20,7 +20,7 @@
                         <x-input-error class="mt-2" for="book.accession_number" />
                     </div>
 
-                    {{-- Title --}}b
+                    {{-- Title --}}
                     <div class="mt-4">
                         <x-input-label for="title" :value="__('Title')" />
                         <x-text-input id="title" name="title" type="text" class="block w-full mt-1" :value="old('book.title', $book->title)" wire:model="book.title" required
