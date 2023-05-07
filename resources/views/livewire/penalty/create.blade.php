@@ -7,7 +7,7 @@
     <form wire:submit.prevent="submit">
         <x-dialog-modal wire:model="confirmingPenaltyCreate">
             <x-slot name="title">
-                {{ __('Add New Book') }}
+                {{ __('Add New Penalty') }}
             </x-slot>
     
             <x-slot name="content">
@@ -24,7 +24,7 @@
                 <div class="mt-4">
                     <x-input-label for="fee" :value="__('Fee')" />
                     <x-text-input id="fee" name="fee" type="number" class="block w-full mt-1"
-                        :value="old('penalty.fee', $penalty->fee)" wire:model="penalty.fee" required />
+                        :value="old('penalty.fee', $penalty->fee)" wire:model="penalty.fee" required pattern='[0-9]+(\\.[0-9][0-9]?)?'/>
                     <x-input-error class="mt-2" for="penalty.fee" />
                 </div>
     
