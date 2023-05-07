@@ -23,7 +23,9 @@ class PenaltyTable extends LivewireDatatable
             Column::name('name')
                 ->searchable(),
             Column::name('fee')
-                ->truncate(60),
+                ->callback(['fee'], function($fee) { 
+                    return '₱ '. number_format($fee / 100, 2);
+                }),
             Column::name('created_by.name')
                 ->label('Created By')
                 ->searchable(),

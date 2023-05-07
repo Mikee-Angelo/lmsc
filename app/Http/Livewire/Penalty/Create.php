@@ -43,6 +43,7 @@ class Create extends Component
         $this->validate();   
         
         $this->penalty->created_by = auth()->user()->id;
+        $this->penalty->fee = $this->penalty->fee * 100;    
         $saved = $this->penalty->save();
 
         if($saved) { 
