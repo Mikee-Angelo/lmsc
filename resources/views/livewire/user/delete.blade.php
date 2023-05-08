@@ -1,6 +1,6 @@
 <div>
     {{-- If your happiness depends on money, you will never be happy with yourself. --}}
-    <x-danger-button type="button" class="mb-4" wire:loading.attr='disabled' wire:click='confirmUserDelete'>
+    <x-danger-button type="button" wire:loading.attr='disabled' wire:click='confirmUserDelete'>
         {{ __('Deactivate') }}
     </x-danger-button>
 
