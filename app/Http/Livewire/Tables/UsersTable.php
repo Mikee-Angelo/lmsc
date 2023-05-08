@@ -11,7 +11,7 @@ class UsersTable extends LivewireDatatable
 {
 
     public function builder() { 
-        return User::with('roles');
+        return User::with('roles')->withTrashed();
     }
 
     public function columns()
@@ -29,6 +29,14 @@ class UsersTable extends LivewireDatatable
             Column::name('created_at')
                 ->label('Date Added')
                 ->searchable(),
+            Column::callback(['id', 'name', 'deleted_at'], function ($id, $name, $deleted_at) {
+                $except = collect([1]);
+                
+                if(!$except->contains($id)){ 
+                    return view('table-actions.user', ['id' => $id, 'name' => $name , 'is_deleted' => !empty($deleted_at)]);
+                }
+
+            })->unsortable()
         ];
     }
 }
