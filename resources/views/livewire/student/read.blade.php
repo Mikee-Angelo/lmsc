@@ -53,14 +53,21 @@
                 <hr class="h-px my-5 bg-gray-200 border-0 dark:bg-gray-700">
 
                 {{-- Book Details --}}
+                <h2 class="-mb-5 text-lg font-medium leading-tight text-gray-800 ">
+                    {{ __('Library Card History') }}
+                </h2>
+
+                @livewire('tables.library-card-table', ['student_id' => $student_id], key($student_id));
+
+                <hr class="h-px my-5 bg-gray-200 border-0 dark:bg-gray-700">
+
+                {{-- Book Details --}}
                 <h2 class="mb-5 text-lg font-medium leading-tight text-gray-800">
                     {{ __('Actions') }}
                 </h2>
                 
-                <div class="mt-6 mb-2">
-                    <a href="{{ route('lc.show', ['student' => $student->student_latest->id ]) }}"
-                        class="text-white mb-5 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Generate
-                        Library Card</a>
+                <div class="-mt-2 -mb-4">
+                    @livewire('student.generate', ['student_id' => $student_id], key($student_id)); 
                 </div>
             </x-slot>
 
@@ -70,7 +77,7 @@
                 </x-secondary-button>
 
                 <x-primary-button class="ml-3" wire:loading.attr="disabled">
-                    {{ __('Add Role') }}
+                    {{ __('Add Student') }}
                 </x-primary-button>
             </x-slot>
 

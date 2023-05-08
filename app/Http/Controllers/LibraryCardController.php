@@ -10,8 +10,7 @@ use App\Models\StudentId;
 class LibraryCardController extends Controller
 {
     //
-    public function show(Student $student) { 
-        $student_id = StudentId::find($student->student_id);
+    public function show(StudentId $student_id) { 
 
         $fpdi = new FPDI; 
         $filePath = public_path("pdf/library_card.pdf");
@@ -37,15 +36,15 @@ class LibraryCardController extends Controller
             $fpdi->Text($left,$top,$text);
 
             //Student Name
-            $left = $size['width'] / 2 - (23 + strlen($student->name));
+            $left = $size['width'] / 2 - (23 + strlen($student_id->student_latest->name));
             $top = ($size['height'] / 2) - 14;
-            $text = $student->name;
+            $text = $student_id->student_latest->name;
             $fpdi->Text($left,$top,$text);
 
             //Program
-            $left = $size['width'] / 2 + (30 - strlen($student->course));
+            $left = $size['width'] / 2 + (30 - strlen($student_id->student_latest->course));
             $top = ($size['height'] / 2) - 14;
-            $text = $student->course;
+            $text = $student_id->student_latest->course;
             $fpdi->Text($left,$top,$text);
         }
 
