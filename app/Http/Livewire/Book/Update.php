@@ -17,9 +17,10 @@ class Update extends Component
     protected $rules = [
         'book.title' => 'required|string',
         'book.description' => 'required|string',
-        'book.edition' => 'required|numeric', 
+        'book.edition' => 'required|string', 
         'book.isbn' => 'required|string',
-        'book.copyright_year' => 'required|numeric', 
+        'book.copyright_year' => 'required|string', 
+        'book.year_published' => 'required|string', 
         'book.pages' => 'required|numeric', 
         'book.height' => 'nullable|numeric',
         'book.width' => 'nullable|numeric',

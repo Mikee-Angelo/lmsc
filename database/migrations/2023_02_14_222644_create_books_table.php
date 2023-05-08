@@ -19,7 +19,8 @@ return new class extends Migration
             $table->text('description'); 
             $table->string('edition', 100); 
             $table->string('isbn', 17);
-            $table->smallInteger('copyright_year'); 
+            $table->string('copyright_year', 20); 
+            $table->string('year_published', 20); 
             $table->smallInteger('pages');
             $table->smallInteger('height')->nullable();
             $table->smallInteger('width')->nullable();
