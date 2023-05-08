@@ -36,6 +36,11 @@
             <livewire:tables.reports.currently-borrowed-table />
 
             <h2 class="mt-10 -mb-8 text-3xl leading-tight text-gray-800">
+                {{ __('Library Cards') }}
+            </h2>
+            <livewire:tables.reports.library-card-student-table />
+
+            <h2 class="mt-10 -mb-8 text-3xl leading-tight text-gray-800">
                 {{ __('Frequent Borrower') }}
             </h2>
             <livewire:tables.reports.frequent-borrow-student-table />
