@@ -1,6 +1,6 @@
 <div>
     {{-- Care about people's approval and you will be their prisoner. --}}
-    <x-danger-button type="button" class="mb-4" wire:loading.attr='disabled' wire:click='confirmReturnCreate'>
+    <x-danger-button type="button" wire:loading.attr='disabled' wire:click='confirmReturnCreate'>
         {{ __('Return') }}
     </x-danger-button>
 
