@@ -55,7 +55,7 @@ Route::middleware('auth')->group(function () {
         Route::get('/', 'show')->name('authors.show');
     });
 
-    Route::get('/student/{student}/lc/generate', [LibraryCardController::class, 'show'])->name('lc.show');
+    Route::get('/student/{student_id}/lc/generate', [LibraryCardController::class, 'show'])->name('lc.show');
 
     Route::get('/reports', [ReportController::class, 'show'])->name('reports.show');
 
