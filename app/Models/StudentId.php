@@ -21,5 +21,7 @@ class StudentId extends Model
         return $this->hasOne(Student::class, 'student_id');
     }
     
-
+    public function transactions() { 
+        return $this->hasMany(Transaction::class, 'student_id');
+    }
 }
