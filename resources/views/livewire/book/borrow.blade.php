@@ -42,7 +42,7 @@
                         <p class="text-base text-gray-90">{{ $student->name }}</p>
                     </div>
                     
-                    <div class="grid grid-cols-3 gap-3 mt-5">
+                    <div class="grid grid-cols-4 gap-3 mt-5">
                         {{-- Course --}}
                         <div>
                             <x-input-label for="course" :value="__('Course')" />
@@ -51,8 +51,14 @@
                     
                         {{-- Year Level --}}
                         <div>
-                            <x-input-label for="year_level" :value="__('Year/Level')" />
-                            <p class="text-base text-gray-90">{{ $student->yearLevel }}</p>
+                            <x-input-label for="year_level" :value="__('Year')" />
+                            <p class="text-base text-gray-90">{{ $student->year }}</p>
+                        </div>
+
+                        {{-- Year Level --}}
+                        <div>
+                            <x-input-label for="year_level" :value="__('Semester')" />
+                            <p class="text-base text-gray-90">{{ $student->level }}</p>
                         </div>
                     
                         {{-- Status --}}
