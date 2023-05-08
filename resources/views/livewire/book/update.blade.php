@@ -34,7 +34,7 @@
                     {{-- Edition --}}
                     <div>
                         <x-input-label for="edition" :value="__('Edition')" />
-                        <x-text-input id="edition" name="edition" type="number" class="block w-full mt-1"
+                        <x-text-input id="edition" name="edition" type="text" class="block w-full mt-1"
                             :value="old('book.edition', $book->edition)" wire:model="book.edition" required />
                         <x-input-error class="mt-2" for="book.edition" />
                     </div>
@@ -50,10 +50,18 @@
                     {{-- Copyright Year --}}
                     <div>
                         <x-input-label for="copyright_year" :value="__('Copyright Year')" />
-                        <x-text-input id="copyright_year" name="copyright_year" type="number" class="block w-full mt-1"
+                        <x-text-input id="copyright_year" name="copyright_year" type="text" class="block w-full mt-1"
                             :value="old('book.copyright_year', $book->copyright_year)" wire:model="book.copyright_year"
                             required />
                         <x-input-error class="mt-2" for="book.copyright_year" />
+                    </div>
+
+                    {{-- Year Published --}}
+                    <div>
+                        <x-input-label for="year_published" :value="__('Year Published')" />
+                        <x-text-input id="year_published" name="year_published" type="text" class="block w-full mt-1"
+                            :value="old('book.year_published', $book->year_published)" wire:model="book.year_published" required />
+                        <x-input-error class="mt-2" for="book.year_published" />
                     </div>
                 </div>
 
