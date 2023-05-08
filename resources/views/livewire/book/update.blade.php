@@ -1,6 +1,6 @@
 <div>
     {{-- If your happiness depends on money, you will never be happy with yourself. --}}
-    <x-primary-button type="button" class="mb-4" wire:loading.attr='disabled' wire:click='confirmBookUpdate'>
+    <x-primary-button type="button"  wire:loading.attr='disabled' wire:click='confirmBookUpdate'>
         {{ __('Edit') }}
     </x-primary-button>
 

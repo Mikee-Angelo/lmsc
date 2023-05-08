@@ -1,6 +1,6 @@
 <div>
     {{-- Knowing others is intelligence; knowing yourself is true wisdom. --}}
-    <x-primary-button type="button" class="mb-4" wire:loading.attr='disabled' wire:click='confirmStudentRead'>
+    <x-primary-button type="button" wire:loading.attr='disabled' wire:click='confirmStudentRead'>
         {{ __('View') }}
     </x-primary-button>
 
