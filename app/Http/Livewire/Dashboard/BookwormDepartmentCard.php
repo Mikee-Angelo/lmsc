@@ -7,7 +7,7 @@ use App\Models\StudentId;
 
 class BookwormDepartmentCard extends Component
 {
-    public StudentId $student_id  ; 
+    public StudentId $student_id ; 
 
     public function render()
     {
@@ -19,7 +19,7 @@ class BookwormDepartmentCard extends Component
     }
 
     public function getBookwormDepartment() { 
-        $this->student_id = StudentId::withCount('transactions')->orderBy('transactions_count', 'DESC')->first() ?? 0;
+        $this->student_id = StudentId::withCount('transactions')->orderBy('transactions_count', 'DESC')->first() ;
 
     }
 }
