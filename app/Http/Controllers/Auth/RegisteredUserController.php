@@ -66,11 +66,11 @@ class RegisteredUserController extends Controller
             $penalties = [
                 [
                     'name' => 'Overdue Penalty', 
-                    'fee' => 0,
+                    'fee' => 2000,
                     'created_by' => $user->id,
                 ],
                 [
-                    'name' => 'Unreturned Penalty', 
+                    'name' => 'Loss Book Penalty', 
                     'fee' => 0,
                     'created_by' => $user->id,
                 ],

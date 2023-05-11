@@ -9,10 +9,12 @@ class Create extends Component
 {   
     public Penalty $penalty;
     public $confirmingPenaltyCreate = false;
+    public $types = ['FIXED', 'VARIABLE']; 
 
     protected $rules = [
         'penalty.name' => 'required|string',
         'penalty.fee' => 'required',
+        'penalty.type' => 'required|string',
     ];
 
     public function render()
@@ -36,7 +38,7 @@ class Create extends Component
         $this->confirmingPenaltyCreate = true;
 
         //Resets the field of the form 
-        $this->book = new Penalty();
+        $this->penalty = new Penalty();
     }
 
     public function submit() { 
@@ -44,6 +46,7 @@ class Create extends Component
         
         $this->penalty->created_by = auth()->user()->id;
         $this->penalty->fee = $this->penalty->fee * 100;    
+        $this->penalty->type = $this->types[$this->penalty->type];
         $saved = $this->penalty->save();
 
         if($saved) { 
