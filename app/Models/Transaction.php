@@ -23,4 +23,8 @@ class Transaction extends Model
     public function approver() { 
         return $this->belongsTo(User::class, 'approved_by');
     }
+
+    public function transaction_penalty() { 
+        return $this->hasMany(TransactionPenalty::class, 'transaction_id');
+    }
 }
