@@ -83,6 +83,7 @@ class Create extends Component
                 $this->user->password = bcrypt($this->password);
                 
                 $saved = $this->user->save();
+                
                 $this->user->givePermissionTo($this->selectedPermissions);
 
                 $this->user->assignRole($this->selectedRole);

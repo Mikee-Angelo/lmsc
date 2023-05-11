@@ -7,10 +7,13 @@
 
     <div>
         <div class="py-10 mx-auto max-w-7xl sm:px-6 lg:px-8">
-
+            @if (auth()->user()->hasDirectPermission('create role'))
             <livewire:role.create />
+            @endif
 
+            @if (auth()->user()->hasDirectPermission('view role'))
             <livewire:tables.role-table />
+            @endif
 
         </div>
     </div>

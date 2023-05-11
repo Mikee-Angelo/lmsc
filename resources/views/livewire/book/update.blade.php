@@ -118,9 +118,11 @@
                 
                 </div>
                 
-                @if (!$hasTransaction) 
-                    <hr class="h-px my-5 bg-gray-200 border-0 dark:bg-gray-700">
-                    @livewire('book.delete', ['title' => $title, 'book_id' => $book_id], key($book_id))
+                @if (auth()->user()->hasDirectPermission('delete books'))
+                    @if (!$hasTransaction) 
+                        <hr class="h-px my-5 bg-gray-200 border-0 dark:bg-gray-700">
+                        @livewire('book.delete', ['title' => $title, 'book_id' => $book_id], key($book_id))
+                    @endif
                 @endif
             </x-slot>
 

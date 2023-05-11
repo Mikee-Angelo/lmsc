@@ -12,7 +12,9 @@
                 <livewire:user.create />
             @endif
 
+            @if (auth()->user()->hasDirectPermission('view account'))
             <livewire:tables.users-table />
+            @endif
         </div>
     </div>
 

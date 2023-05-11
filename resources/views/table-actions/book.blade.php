@@ -1,5 +1,7 @@
 
 <div class="flex space-x-2 justify-evenly">
-    @livewire('book.update', ['title' => $title, 'book_id' => $id], key($id))    
+    @if (auth()->user()->hasDirectPermission('update books'))
+        @livewire('book.update', ['title' => $title, 'book_id' => $id], key($id))  
+    @endif  
     @livewire('book.borrow', ['title' => $title, 'book_id' => $id], key($id))
 </div>

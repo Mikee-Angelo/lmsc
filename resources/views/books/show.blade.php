@@ -22,7 +22,9 @@
                 <livewire:book.create />
             @endif
             
+            @if (auth()->user()->hasDirectPermission('view books'))
             <livewire:tables.book-table />
+            @endif
         </div>
     </div>
 

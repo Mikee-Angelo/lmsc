@@ -11,6 +11,12 @@ class ReportsPenaltiesTable extends LivewireDatatable
 {
     public $exportable = true;
 
+    public function __construct() { 
+        if (auth()->user()->hasDirectPermission('import reports')) { 
+            $this->exportable = false;
+        }
+    }
+
     public function builder()
     {
         //

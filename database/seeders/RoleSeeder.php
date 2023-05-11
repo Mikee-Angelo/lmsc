@@ -23,15 +23,31 @@ class RoleSeeder extends Seeder
         $p1 = Permission::create(['name' => 'view books']); 
         $p2 = Permission::create(['name' => 'delete books']);
         $p3 = Permission::create(['name' => 'update books']);
+        
+        // User
         Permission::create(['name' => 'create account']);
         Permission::create(['name' => 'disable account']);
-        Permission::create(['name' => 'delete account']);
+        Permission::create(['name' => 'view account']);
         Permission::create(['name' => 'update account']);
         
-        $role->givePermissionTo(Permission::all());
+        // Stakeholder
+        Permission::create(['name' => 'import stakeholder']);
+        Permission::create(['name' => 'view stakeholder']); 
+        Permission::create(['name' => 'create faculty']);
 
-        $assistantRole = Role::create(['name' => 'Assistant Librarian']);
-        
-        $assistantRole->givePermissionTo(Permission::all());
+        //Penalties
+        Permission::create(['name' => 'create penalty']);
+        Permission::create(['name' => 'view penalty']); 
+        Permission::create(['name' => 'delete penalty']);
+
+        //Role
+        Permission::create(['name' => 'create role']);
+        Permission::create(['name' => 'view role']); 
+
+        //Reports
+        Permission::create(['name' => 'import reports']);
+        Permission::create(['name' => 'view reports']); 
+
+        Role::create(['name' => 'Assistant Librarian']);
     }
 }
