@@ -108,10 +108,13 @@
                    </div>
 
                    <div class="flex flex-row mt-4 space-x-4">
-                        {{-- Number of Pages --}}
-                        <div>
-                            <x-input-label for="price" :value="__('Price')" />
-                            <x-text-input id="price" name="price" type="number" class="block w-full mt-1"
+                       <div class="flex mt-1">
+                            <span
+                                class="inline-flex items-center px-3 text-sm text-gray-900 bg-gray-200 border border-r-0 border-gray-300 rounded-l-md dark:bg-gray-600 dark:text-gray-400 dark:border-gray-600">
+                                ₱
+                            </span>
+                            <x-text-input id="price" name="price" type="number"
+                                class="brounded-none rounded-r-lg bg-white border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                 :value="old('book.price', $book->price)" wire:model="book.price" required />
                             <x-input-error class="mt-2" for="book.price" />
                         </div>

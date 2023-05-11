@@ -12,6 +12,7 @@ class TransactionPenalty extends Model
     protected $fillable = [ 
         'penalty_id', 
         'transaction_id',
+        'amount',
     ];
 
     public function transaction() { 

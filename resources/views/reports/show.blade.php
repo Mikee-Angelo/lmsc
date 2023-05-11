@@ -49,6 +49,11 @@
                 {{ __('Borrowed Books') }}
             </h2>
             <livewire:tables.reports.borrow-student-table />
+
+            <h2 class="mt-10 -mb-8 text-3xl leading-tight text-gray-800">
+                {{ __('List of Penalties') }}
+            </h2>
+            <livewire:tables.reports.reports-penalties-table />
         </div>
     </div>
 

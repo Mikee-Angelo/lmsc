@@ -136,6 +136,105 @@
                 <textarea id="notes" rows="4"
                     class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     wire:model='transaction.notes' placeholder="Write your notes here..."></textarea>
+
+                <hr class="h-px my-5 bg-gray-200 border-0 dark:bg-gray-700">
+
+                {{-- Transaction Details --}}
+                <h2 class="mb-5 text-lg font-medium leading-tight text-gray-800">
+                    {{ __('Add Penalties') }}
+                </h2>
+                
+                <div class="mt-4">
+
+                    <x-input-label for="penalty " :value="__('Penalty')" />
+                    <div class="flex flex-row mt-1 space-x-2">
+                        <div class="w-full ">
+                            <select id="penalty" name="penalty"
+                                class=" bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                wire:model="selected_penalty" wire:change='setAmount'>
+                                <option selected>Select Option...</option>
+                                @foreach (collect($penalties) as $k => $v)
+                                <option value="{{ $k }}">{{ $v['name'] }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+
+                        <div class="w-full">
+                            <div class="flex">
+                                <span
+                                    class="inline-flex items-center px-3 text-sm text-gray-900 bg-gray-200 border border-r-0 border-gray-300 rounded-l-md dark:bg-gray-600 dark:text-gray-400 dark:border-gray-600">
+                                    ₱
+                                </span>
+                                <input type="number" 
+                                    wire:model="amount" class="rounded-none rounded-r-lg bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" disabled>
+                            </div>
+                        </div>
+
+                        {{-- Knowing others is intelligence; knowing yourself is true wisdom. --}}        
+                    </div>
+
+                    <label for="notes" class="block mt-5 mb-2 text-sm font-medium text-gray-900 dark:text-white">Add
+                        Note:</label>
+                    <textarea id="notes" rows="4"
+                        class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                        wire:model='notes' placeholder="Write your notes here..."></textarea>
+
+                    @if (isset($selected_penalty))
+                    <x-primary-button type="button" class="w-full mt-2" wire:loading.attr='disabled' wire:click='addPenalty'>
+                        {{ __('Add') }}
+                    </x-primary-button>
+                    @endif
+                    
+                    @if($penalty_lists && $transaction_penalties)
+                    <div class="relative mt-4 overflow-x-auto shadow-md sm:rounded-lg">
+                        <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+                            <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                                <tr>
+                                    <th scope="col" class="px-6 py-3">
+                                        Penalty
+                                    </th>
+                                    <th scope="col" class="px-6 py-3">
+                                        Price
+                                    </th>
+
+                                    <th scope="col" class="px-6 py-3">
+                                        Note
+                                    </th>
+                                    
+                                    <th scope="col" class="px-6 py-3">
+                                        Action
+                                    </th>
+                                   
+                            </thead>
+                            <tbody>
+
+                                @foreach (collect($transaction_penalties) as $k => $v)
+
+                                <tr class="bg-white border-b dark:bg-gray-900 dark:border-gray-700">
+                                    <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                        {{ $penalty_lists[$k]['name']}}
+                                    </th>
+                                    <td class="px-6 py-4">
+                                        {{ '₱ ' .number_format($v['amount'] / 100, 2)}}
+                                    </td>
+                                    <td class="px-6 py-4">
+                                        {{ $v['note'] ?? ''}}
+                                    </td>
+                                    <td class="px-6 py-4">
+                                        <x-danger-button type="button" wire:loading.attr='disabled' wire:click='confirmRemovePenalty({{$k}})'>
+                                                {{ __('Remove') }}
+                                        </x-danger-button>
+                                    </td>
+                                </tr>
+                                @endforeach
+                                
+                                
+                            </tbody>
+                        </table>
+                    </div>
+                    @endif
+                
+                </div>
                     
             </x-slot>
     
