@@ -52,7 +52,7 @@
                         {{-- Year Level --}}
                         <div>
                             <x-input-label for="year_level" :value="__('Year')" />
-                            <p class="text-base text-gray-90">{{ $student->year }}</p>
+                            <p class="text-base text-gray-90">{{ $student->year ?? '' }}</p>
                         </div>
 
                         {{-- Year Level --}}
