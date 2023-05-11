@@ -18,7 +18,7 @@ class StudentImport implements ToCollection
 
             foreach($rows as $row) { 
                 
-                if(isset($row[0]) &&  isset($row[1]) && isset($row[2]) && isset($row[3]) && isset($row[4]) && isset($row[5]) && isset($row[6]) && isset($row[7])) { 
+                if(isset($row[0]) &&  isset($row[1]) && isset($row[2]) && isset($row[4]) && isset($row[5]) && isset($row[6]) && isset($row[8])) { 
                     $id = StudentId::firstOrCreate([
                         'student_number' => $row[5]
                     ]);
@@ -31,6 +31,7 @@ class StudentImport implements ToCollection
                             'level' => $row[4],
                             'school_year' => $row[6],
                             'status' => $row[7],
+                            'remarks' => $row[8],
                             'student_id' => $id->id
                         ]);
                     }

@@ -19,10 +19,11 @@ return new class extends Migration
             $table->foreign('student_id')->references('id')->on('student_ids')->onDelete('cascade');
             $table->string('name', 255);
             $table->string('course', 10); 
-            $table->string('year', 10);
+            $table->string('year', 10)->nullable();
             $table->string('level', 10);
-            $table->string('school_year', 20);
-            $table->string('status', 10);
+            $table->string('school_year', 20)->nullable();
+            $table->enum('remarks', ['STUDENT', 'FACULTY']);
+            $table->string('status', 10)->nullable();
             $table->timestamps();
         });
     }
