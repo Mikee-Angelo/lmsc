@@ -34,6 +34,7 @@ class CreateFaculty extends Component
     public function confirmFacultyCreate() { 
         $this->confirmingFacultyCreate = true; 
         $this->student = new Student();
+        $this->studentIds = new StudentId();
     }
 
     public function submit() { 
