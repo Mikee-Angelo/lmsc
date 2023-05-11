@@ -19,6 +19,7 @@ return new class extends Migration
             $table->foreign('transaction_id')->references('id')->on('transactions')->onDelete('cascade');
             $table->bigInteger('penalty_id')->unsigned();
             $table->foreign('penalty_id')->references('id')->on('penalties')->onDelete('cascade');
+            $table->integer('amount');
             $table->enum('status', ['Pending', 'Paid'])->default('Pending');
             $table->timestamps();
         });

@@ -25,6 +25,7 @@ class Update extends Component
         'book.height' => 'nullable|numeric',
         'book.width' => 'nullable|numeric',
         'book.depth' => 'nullable|numeric',
+        'book.price' => 'required|numeric',
     ];
 
     public function render()
@@ -35,6 +36,10 @@ class Update extends Component
     public function mount() { 
 
         $this->book = Book::find($this->book_id);
+
+        if(isset($this->book)) { 
+            $this->book->price = (double) number_format($this->book->price / 100, 2);
+        }
         
         $this->checkBorrow(); 
     }
@@ -55,6 +60,8 @@ class Update extends Component
         $this->validate();   
         
         try { 
+              $this->book->price = $this->book->price * 100;
+        
             $saved = $this->book->save();
 
             if($saved) { 
