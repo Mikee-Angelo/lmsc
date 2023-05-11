@@ -19,6 +19,10 @@ class MostBorrowedBookCard extends Component
     }
 
     public function getMostBorrowedBook() { 
-        $this->book = Book::withCount('transactions')->orderBy('transactions_count', 'DESC')->first();
+        $result = Book::withCount('transactions')->orderBy('transactions_count', 'DESC')->first();
+
+        if(!is_null($result)) { 
+            $this->book =  $result;
+        }
     }
 }
