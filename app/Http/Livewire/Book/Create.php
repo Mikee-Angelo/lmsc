@@ -22,6 +22,7 @@ class Create extends Component
         'book.height' => 'nullable|numeric',
         'book.width' => 'nullable|numeric',
         'book.depth' => 'nullable|numeric',
+        'book.price' => 'required|numeric',
     ];
 
     public function mount(Book $book) { 
@@ -42,6 +43,8 @@ class Create extends Component
 
     public function submit() { 
         $this->validate();   
+
+        $this->book->price = $this->book->price * 100; 
         
         $saved = $this->book->save();
 
