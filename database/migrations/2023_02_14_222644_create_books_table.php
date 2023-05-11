@@ -25,6 +25,7 @@ return new class extends Migration
             $table->smallInteger('height')->nullable();
             $table->smallInteger('width')->nullable();
             $table->smallInteger('depth')->nullable();
+            $table->integer('price');
             $table->string('file_path', 255)->nullable();
             $table->timestamps();
         });

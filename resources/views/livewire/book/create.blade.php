@@ -106,6 +106,17 @@
                         <x-input-error class="mt-2" for="book.depth" />
                     </div>
                    </div>
+
+                   <div class="flex flex-row mt-4 space-x-4">
+                        {{-- Number of Pages --}}
+                        <div>
+                            <x-input-label for="price" :value="__('Price')" />
+                            <x-text-input id="price" name="price" type="number" class="block w-full mt-1"
+                                :value="old('book.price', $book->price)" wire:model="book.price" required />
+                            <x-input-error class="mt-2" for="book.price" />
+                        </div>
+                    
+                    </div>
                 </x-slot>
             
                 <x-slot name="footer">
