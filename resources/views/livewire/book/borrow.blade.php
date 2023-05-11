@@ -64,7 +64,7 @@
                         {{-- Status --}}
                         <div>
                             <x-input-label for="status" :value="__('Status')" />
-                            <p class="text-base text-gray-90">{{ $student->status }}</p>
+                            <p class="text-base text-gray-90">{{ $student->status ??  '' }}</p>
                         </div>
                     </div>
 
