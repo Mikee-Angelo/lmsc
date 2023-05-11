@@ -22,13 +22,13 @@ class StudentTable extends LivewireDatatable
                 ->defaultSort('desc')
                 ->label('ID'),
             Column::name('student_number')
-                ->label('Student Number')
+                ->label('ID Number')
                 ->searchable(),
             Column::name('student.name')
                 ->label('Name')
                 ->searchable(),
             Column::name('student.course')
-                ->label('Course'),
+                ->label('Course/Dept.'),
             Column::name('student.year')
                 ->label('Year'),
             Column::name('student.level')
@@ -37,6 +37,8 @@ class StudentTable extends LivewireDatatable
                 ->label('School Year'),
             Column::name('student.status')
                 ->label('Status'),
+            Column::name('student.remarks')
+                ->label('Remarks'),
             Column::name('created_at')
                 ->label('Date Added'),
             Column::callback(['id'], function ($id) {

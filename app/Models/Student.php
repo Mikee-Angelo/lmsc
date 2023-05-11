@@ -17,6 +17,7 @@ class Student extends Model
         'school_year', 
         'status', 
         'student_id',  
+        'remarks',
     ];
 
     public function student_id() { 
