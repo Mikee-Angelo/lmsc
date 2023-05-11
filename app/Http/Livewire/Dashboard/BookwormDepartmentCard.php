@@ -19,7 +19,10 @@ class BookwormDepartmentCard extends Component
     }
 
     public function getBookwormDepartment() { 
-        $this->student_id = StudentId::withCount('transactions')->orderBy('transactions_count', 'DESC')->first() ;
+        $result = StudentId::withCount('transactions')->orderBy('transactions_count', 'DESC')->first() ;
 
+        if(!is_null($result)){
+            $this->student_id = $result;
+        }
     }
 }
