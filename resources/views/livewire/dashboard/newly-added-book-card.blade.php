@@ -3,8 +3,8 @@
     <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Latest Added Book</h5>
     <div class="flex flex-row justify-between">
         <div>
-            <p class="font-normal text-gray-700 dark:text-gray-400">{{$book->title}}</p>
-            <p class="font-normal text-gray-700 dark:text-gray-400">{{$book->description}}</p>
+            <p class="font-normal text-gray-700 dark:text-gray-400">{{$book->title ?? ''}}</p>
+            <p class="font-normal text-gray-700 dark:text-gray-400">{{$book->description ?? ''}}</p>
         </div>
     </div>
 </a>
