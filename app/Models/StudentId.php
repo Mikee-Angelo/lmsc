@@ -13,12 +13,12 @@ class StudentId extends Model
         'student_number'
     ];
 
-    public function student() { 
-        return $this->hasMany(Student::class, 'student_id');
-    }
-
     public function student_latest() { 
         return $this->hasOne(Student::class, 'student_id');
+    }
+
+    public function student() { 
+        return $this->hasMany(Student::class, 'student_id');
     }
     
     public function transactions() { 
