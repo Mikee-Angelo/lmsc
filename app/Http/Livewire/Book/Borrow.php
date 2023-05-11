@@ -27,9 +27,7 @@ class Borrow extends Component
         'transaction.notes' => 'nullable|string',
         'student.name' => 'string',
         'student.course' => 'string',
-        'student.year' => 'string',
         'student.level' => 'string',
-        'student.status' => 'string',
     ];
 
     public function render()
