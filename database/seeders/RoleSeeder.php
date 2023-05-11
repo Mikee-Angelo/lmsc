@@ -20,7 +20,7 @@ class RoleSeeder extends Seeder
         $role = Role::create(['name' => 'Admin']); 
 
         $p0 = Permission::create(['name' => 'create books']);
-        $p1 = Permission::create(['name' => 'edit books']); 
+        $p1 = Permission::create(['name' => 'view books']); 
         $p2 = Permission::create(['name' => 'delete books']);
         $p3 = Permission::create(['name' => 'update books']);
         Permission::create(['name' => 'create account']);
