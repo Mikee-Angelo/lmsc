@@ -27,6 +27,19 @@
                         :value="old('penalty.fee', $penalty->fee)" wire:model="penalty.fee" required pattern='[0-9]+(\\.[0-9][0-9]?)?'/>
                     <x-input-error class="mt-2" for="penalty.fee" />
                 </div>
+
+                {{-- Fee --}}
+                <div class="mt-4">
+                    <x-input-label for="fee" :value="__('Pricing Type')" />
+                    <select id="type" name="type"
+                        class="mt-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                        wire:model="penalty.type">
+                        <option selected>Select Option...</option>
+                        @foreach ($types as $k => $v)
+                        <option value="{{ $k }}">{{ $v }}</option>
+                        @endforeach
+                    </select>
+                </div>
     
             </x-slot>
     

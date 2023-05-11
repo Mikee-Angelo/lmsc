@@ -12,7 +12,7 @@ class StudentTable extends LivewireDatatable
 {
     
     public function builder() { 
-        return StudentId::with('student');
+        return StudentId::query()->leftJoin('students', 'students.student_id', 'student_ids.id');
     }
 
     public function columns()
@@ -24,7 +24,7 @@ class StudentTable extends LivewireDatatable
             Column::name('student_number')
                 ->label('ID Number')
                 ->searchable(),
-            Column::name('student.name')
+            Column::name('students.name')
                 ->label('Name')
                 ->searchable(),
             Column::name('student.course')
@@ -43,7 +43,7 @@ class StudentTable extends LivewireDatatable
                 ->label('Date Added'),
             Column::callback(['id'], function ($id) {
                 return view('table-actions.student', ['id' => $id]);
-            })->unsortable()
+            })
         ];
     }
 }
