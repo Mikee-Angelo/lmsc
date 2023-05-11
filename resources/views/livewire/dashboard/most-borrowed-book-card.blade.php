@@ -3,12 +3,12 @@
     <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Most Borrowed Book</h5>
     <div class="flex flex-row justify-between">
         <div>
-            <p class="font-normal text-gray-700 dark:text-gray-400">{{$book->title}}</p>
-            <p class="font-normal text-gray-700 dark:text-gray-400">{{$book->edition}}</p>
+            <p class="font-normal text-gray-700 dark:text-gray-400">{{$book->title ?? ''}}</p>
+            <p class="font-normal text-gray-700 dark:text-gray-400">{{$book->edition ?? ''}}</p>
         </div>
         
         <div>
-            <p class="text-4xl font-normal text-gray-900 dark:text-white">{{ $book->transactions_count}}</p>
+            <p class="text-4xl font-normal text-gray-900 dark:text-white">{{ $book->transactions_count ?? 0}}</p>
         </div>
     </div>
 </a>

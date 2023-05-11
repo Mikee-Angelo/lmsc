@@ -19,6 +19,10 @@ class NewlyAddedBookCard extends Component
     }
 
     public function getNewlyAddedBook() {  
-        $this->book = Book::orderBy('created_at', 'DESC')->first();
+        $result = Book::orderBy('created_at', 'DESC')->first();
+
+        if(!is_null($result)) { 
+            $this->book = $result;
+        }
     }
 }

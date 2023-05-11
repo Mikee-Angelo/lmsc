@@ -3,12 +3,12 @@
     <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Bookworm Stakeholder</h5>
     <div class="flex flex-row justify-between">
         <div>
-            <p class="font-normal text-gray-700 dark:text-gray-400">{{$student_id->student_latest->name}}</p>
-            <p class="font-normal text-gray-700 dark:text-gray-400">{{$student_id->student_latest->course}}</p>
+            <p class="font-normal text-gray-700 dark:text-gray-400">{{$student_id->student_latest->name ?? ''}}</p>
+            <p class="font-normal text-gray-700 dark:text-gray-400">{{$student_id->student_latest->course ?? ''}}</p>
         </div>
         
         <div>
-            <p class="text-4xl font-normal text-gray-900 dark:text-white">{{ $student_id->transactions_count}}</p>
+            <p class="text-4xl font-normal text-gray-900 dark:text-white">{{ $student_id->transactions_count ?? 0}}</p>
         </div>
     </div>
 </a>
