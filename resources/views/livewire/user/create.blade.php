@@ -36,6 +36,13 @@
                         :value="old('password', $password)" wire:model="password" required  />
                     <x-input-error class="mt-2" for="password" />
                 </div>
+
+                {{-- Password --}}
+                <div class="mt-4">
+                    <x-label for="password_confirmation" value="{{ __('Confirm Password') }}" />
+                    <x-input id="password_confirmation" class="block w-full mt-1" type="password" name="password_confirmation" required
+                       wire:model="password_confirmation" autocomplete="new-password" />
+                </div>
                 
                 <div class="mt-4">
                     <x-input-label for="role" :value="__('Select Role')"/>

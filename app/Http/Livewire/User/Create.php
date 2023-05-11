@@ -30,6 +30,9 @@ class Create extends Component
     //Stores the password input value
     public $password;
 
+     //Stores the password input value
+    public $password_confirmation;
+
     protected $listeners = ['loadSelectedRolePermissions' =>  'loadSelectedRolePermissions'];
 
     protected $rules = [ 
@@ -62,6 +65,7 @@ class Create extends Component
         //Resets the field of the form 
         $this->user = new User();
         $this->password = null;
+        $this->password_confirmation = null;
         
         $this->loadSelectedRolePermissions();
     }
@@ -73,7 +77,7 @@ class Create extends Component
             DB::beginTransaction();
             if(filled($this->password)) { 
                 $this->validate([
-                    'password' => ['required', 'min:8', 'max:255',  'string'],
+                    'password' => ['required', 'min:8', 'max:255',  'string', 'confirmed'],
                 ]);
                 
                 $this->user->password = bcrypt($this->password);
