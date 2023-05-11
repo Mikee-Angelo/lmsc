@@ -11,6 +11,8 @@ use Carbon\Carbon;
 
 class FrequentBorrowStudentTable extends LivewireDatatable
 {
+    public $exportable = true;
+
     public function builder()
     {
         return StudentId::with('transactions')->distinct();
@@ -20,10 +22,12 @@ class FrequentBorrowStudentTable extends LivewireDatatable
     {
         //
         return[
-            Column::name('student_latest.name')
+            Column::name('student.name')
                 ->label('Student Name'),
             NumberColumn::name('transactions.student_id')
                 ->label('Count')->defaultSort('desc')->unsortable(),
+             Column::name('student.remarks')
+                ->label('Remarks'),
             Column::name('created_at')
                 ->label('Borrowed At'),
         ];
