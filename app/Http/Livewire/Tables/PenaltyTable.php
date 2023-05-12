@@ -9,7 +9,7 @@ use Mediconesystems\LivewireDatatables\Column;
 class PenaltyTable extends LivewireDatatable
 {
     public function builder() { 
-        return Penalty::with('created_by');
+        return Penalty::query()->leftJoin('users', 'penalties.created_by', 'users.id');
     }
 
 

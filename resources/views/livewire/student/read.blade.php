@@ -21,33 +21,46 @@
 
                     {{-- Name --}}
                     <div class="w-full">
-                        <x-input-label for="name" :value="__('Student Number')" />
+                        <x-input-label for="name" :value="__('ID Number')" />
                         <x-text-input id="name" name="name" type="text" class="block w-full mt-1"
                             value="{{ $student->student_number }}" disabled />
                     </div>
-                </div>
 
-                <div class="flex flex-row mt-4 space-x-4">
                     {{-- Name --}}
                     <div class="w-full">
                         <x-input-label for="name" :value="__('Course')" />
                         <x-text-input id="name" name="name" type="text" class="block w-full mt-1"
                             value="{{ $student->student_latest->course }}" disabled />
                     </div>
-                
+                </div>
+
+                <div class="flex flex-row mt-4 space-x-4">
+                    
                     {{-- Name --}}
-                    <div class="w-full">
-                        <x-input-label for="name" :value="__('Year/Level')" />
-                        <x-text-input id="name" name="name" type="text" class="block w-full mt-1" value="{{ $student->student_latest->yearLevel }}"
-                            disabled />
-                    </div>
+
+                    @if (!is_null($student->student_latest->year))
+                        <div class="w-full">
+                            <x-input-label for="name" :value="__('Year')" />
+                            <x-text-input id="name" name="name" type="text" class="block w-full mt-1"
+                                value="{{ $student->student_latest->year }}" disabled />
+                        </div>
+                    @endif
 
                     {{-- Name --}}
-                    <div>
+                    <div class="w-full">
+                        <x-input-label for="name" :value="__('Level')" />
+                        <x-text-input id="name" name="name" type="text" class="block w-full mt-1"
+                            value="{{ $student->student_latest->level }}" disabled />
+                    </div>
+
+                    @if (!is_null($student->student_latest->status))
+                    {{-- Name --}}
+                    <div class="w-full">
                         <x-input-label for="name" :value="__('Status')" />
                         <x-text-input id="name" name="name" type="text" class="block w-full mt-1"
                             value="{{ $student->student_latest->status }}" disabled />
                     </div>
+                    @endif
                 </div>
                 
                 <hr class="h-px my-5 bg-gray-200 border-0 dark:bg-gray-700">
@@ -75,10 +88,6 @@
                 <x-secondary-button wire:click="$toggle('confirmingStudentRead')" wire:loading.attr="disabled">
                     {{ __('Cancel') }}
                 </x-secondary-button>
-
-                <x-primary-button class="ml-3" wire:loading.attr="disabled">
-                    {{ __('Add Student') }}
-                </x-primary-button>
             </x-slot>
 
         </x-dialog-modal>
