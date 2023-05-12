@@ -21,7 +21,7 @@
 
             <x-slot name="content">
                 {{-- Title --}}
-                <x-input-label for="name" :value="__('Find Student Number')" />
+                <x-input-label for="name" :value="__('Find ID Number')" />
                 
                 <div class="flex flex-row mt-1">
                         <x-text-input id="student_number" name="student_number" type="text" class="block w-full"
