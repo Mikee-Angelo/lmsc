@@ -63,25 +63,28 @@
                     @endif
                 </div>
                 
-                <hr class="h-px my-5 bg-gray-200 border-0 dark:bg-gray-700">
-
-                {{-- Book Details --}}
-                <h2 class="-mb-5 text-lg font-medium leading-tight text-gray-800 ">
-                    {{ __('Library Card History') }}
-                </h2>
-
-                @livewire('tables.library-card-table', ['student_id' => $student_id], key($student_id));
-
-                <hr class="h-px my-5 bg-gray-200 border-0 dark:bg-gray-700">
-
-                {{-- Book Details --}}
-                <h2 class="mb-5 text-lg font-medium leading-tight text-gray-800">
-                    {{ __('Actions') }}
-                </h2>
+                @if ($student->student_latest->remarks == 'STUDENT')
+                    <hr class="h-px my-5 bg-gray-200 border-0 dark:bg-gray-700">
+                    
+                    {{-- Book Details --}}
+                    <h2 class="-mb-5 text-lg font-medium leading-tight text-gray-800 ">
+                        {{ __('Library Card History') }}
+                    </h2>
+                    
+                    @livewire('tables.library-card-table', ['student_id' => $student_id], key($student_id));
+                    
+                    <hr class="h-px my-5 bg-gray-200 border-0 dark:bg-gray-700">
+                    
+                    {{-- Book Details --}}
+                    <h2 class="mb-5 text-lg font-medium leading-tight text-gray-800">
+                        {{ __('Actions') }}
+                    </h2>
+                    
+                    <div class="-mt-2 -mb-4">
+                        @livewire('student.generate', ['student_id' => $student_id], key($student_id));
+                    </div>
+                @endif
                 
-                <div class="-mt-2 -mb-4">
-                    @livewire('student.generate', ['student_id' => $student_id], key($student_id)); 
-                </div>
             </x-slot>
 
             <x-slot name="footer">
