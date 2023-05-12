@@ -71,13 +71,14 @@ class Returned extends Component
 
     public function setAmount() { 
         if(isset($this->selected_penalty)) { 
-            $this->amount = $this->penalties[$this->selected_penalty]['type'] == 'VARIABLE' ? number_format($this->transaction->book->price / 100 , 2): number_format($this->penalties[$this->selected_penalty]['fee'] / 100, 2);
+            $this->amount = $this->penalties[$this->selected_penalty]['type'] == 'VARIABLE' ? number_format($this->transaction->book->price / 100 , 2) : number_format($this->penalties[$this->selected_penalty]['fee'] / 100, 2);
         }
     }
 
     public function confirmReturnCreate() { 
         $this->confirmingReturnCreate = true; 
         $this->selected_penalty = null;
+        $this->amount = null; 
         $this->penalty_lists = [];
     }
 

@@ -1,7 +1,7 @@
 <div>
     {{-- If your happiness depends on money, you will never be happy with yourself. --}}
     <x-primary-button type="button" wire:loading.attr='disabled' wire:click='confirmCardGenerate'>
-        {{ __('Generare Library Card') }}
+        {{ __('Generate Library Card') }}
     </x-primary-button>
 
     <x-dialog-modal wire:model="confirmingCardGenerate">

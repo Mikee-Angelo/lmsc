@@ -11,11 +11,11 @@ use Carbon\Carbon;
 
 class FrequentBorrowStudentTable extends LivewireDatatable
 {
-    public $exportable = true;
+    public $exportable = false;
 
     public function __construct() { 
         if (auth()->user()->hasDirectPermission('import reports')) { 
-            $this->exportable = false;
+            $this->exportable = true;
         }
     }
 

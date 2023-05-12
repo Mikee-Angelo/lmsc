@@ -16,6 +16,7 @@ class Penalty extends Model
     protected $fillable = [ 
         'name', 
         'fee', 
+        'type',
         'created_by'
     ];
 

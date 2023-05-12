@@ -66,17 +66,22 @@ class RegisteredUserController extends Controller
                 [
                     'name' => 'Overdue Penalty', 
                     'fee' => 2000,
+                    'type' => 'FIXED',
                     'created_by' => $user->id,
                 ],
                 [
                     'name' => 'Loss Book Penalty', 
                     'fee' => 0,
+                    'type' => "VARIABLE",
                     'created_by' => $user->id,
                 ],
             ];
 
             foreach($penalties as $penalty) { 
+
+                
                 $p = new Penalty($penalty);
+
                 $p->save(); 
             }
 
