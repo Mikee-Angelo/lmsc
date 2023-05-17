@@ -19,11 +19,11 @@ class RoleSeeder extends Seeder
         
         $role = Role::create(['name' => 'Admin']); 
 
-        $p0 = Permission::create(['name' => 'create books']);
-        $p1 = Permission::create(['name' => 'view books']); 
-        $p2 = Permission::create(['name' => 'delete books']);
-        $p3 = Permission::create(['name' => 'update books']);
-        
+        Permission::create(['name' => 'create books']);
+        Permission::create(['name' => 'view books']); 
+        Permission::create(['name' => 'delete books']);
+        Permission::create(['name' => 'update books']);
+     
         // User
         Permission::create(['name' => 'create account']);
         Permission::create(['name' => 'disable account']);
@@ -47,6 +47,9 @@ class RoleSeeder extends Seeder
         //Reports
         Permission::create(['name' => 'import reports']);
         Permission::create(['name' => 'view reports']); 
+
+        //Profile
+        Permission::create(['name' => 'edit profile']); 
 
         Role::create(['name' => 'Assistant Librarian']);
     }

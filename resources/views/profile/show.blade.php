@@ -8,7 +8,7 @@
     <div>
         <div class="py-10 mx-auto max-w-7xl sm:px-6 lg:px-8">
 
-            @if (auth()->user()->hasRole('Admin')) 
+            @if (auth()->user()->hasDirectPermission('edit profile')) 
                 @if (Laravel\Fortify\Features::canUpdateProfileInformation())
                 @livewire('profile.update-profile-information-form')
                 

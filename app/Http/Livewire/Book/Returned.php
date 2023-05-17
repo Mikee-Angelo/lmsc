@@ -8,6 +8,7 @@ use App\Models\Penalty;
 use App\Models\TransactionPenalty;
 use Carbon\Carbon; 
 use Illuminate\Support\Facades\DB;
+use OwenIt\Auditing\Models\Audit;
 
 class Returned extends Component
 {
@@ -97,6 +98,21 @@ class Returned extends Component
             $this->transaction->returned_at = Carbon::now();
 
             $saved = $this->transaction->save();
+
+            $data = [
+                'auditable_id' => $this->transaction->book_id,
+                'auditable_type' => "App\Models\Book",
+                'event'      => "returned",
+                'url'        => request()->fullUrl(),
+                'ip_address' => request()->getClientIp(),
+                'user_agent' => request()->userAgent(),
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
+                'user_id' => auth()->user()->id,
+            ];
+
+            //create audit trail data
+            Audit::create($data);
 
             if($saved) { 
                 $this->emit('refreshLivewireDatatable');
