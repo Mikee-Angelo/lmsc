@@ -61,9 +61,8 @@ class RegisteredUserController extends Controller
         
             $user->givePermissionTo(Permission::all());
 
-            $user->assignRole('Admin'); 
+            $user->assignRole('Super Admin'); 
             
-
             $penalties = [
                 [
                     'name' => 'Overdue Penalty', 
