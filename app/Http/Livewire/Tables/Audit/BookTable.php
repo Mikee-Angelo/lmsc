@@ -13,7 +13,9 @@ class BookTable extends LivewireDatatable
     public function builder()
     {
         //
-        return Audit::query()->where('auditable_type', 'App\Models\Book')->leftJoin('users', 'users.id', 'audits.user_id');
+        return Audit::query()->where('auditable_type', 'App\Models\Book')
+            ->leftJoin('users', 'users.id', 'audits.user_id')
+            ->leftJoin('books', 'books.id', 'audits.auditable_id');
     }
 
     public function columns()
@@ -25,12 +27,8 @@ class BookTable extends LivewireDatatable
                 ->label('ID'), 
             Column::name('event')
                 ->label('EVENT'), 
-            Column::callback(['new_values'], function($new_values){ 
-                $data = json_decode($new_values);
-
-                return $data->title;
-            })  
-                ->label('Book Title'), 
+            Column::name('books.title')
+                    ->label('Book Title'), 
             Column::name('users.name')
                 ->label('Created By'), 
             Column::name('created_at')

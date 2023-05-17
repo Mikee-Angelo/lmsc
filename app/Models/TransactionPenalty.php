@@ -13,6 +13,8 @@ class TransactionPenalty extends Model
         'penalty_id', 
         'transaction_id',
         'amount',
+        'note',
+        'status',
     ];
 
     public function transaction() { 

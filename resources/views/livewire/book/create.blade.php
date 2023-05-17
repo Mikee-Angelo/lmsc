@@ -12,12 +12,22 @@
             
                 <x-slot name="content">
 
-                    {{-- Accetion Number --}}
-                    <div>
-                        <x-input-label for="accession_number" :value="__('Accession Number')" />
-                        <x-text-input id="accession_number" name="accession_number" type="text" class="block w-full mt-1" :value="old('book.accession_number', $book->accession_number)"
-                            wire:model="book.accession_number" required />
-                        <x-input-error class="mt-2" for="book.accession_number" />
+                    <div class="flex flex-row space-x-4">
+                        {{-- Accetion Number --}}
+                        <div class="w-full">
+                            <x-input-label for="accession_number" :value="__('Accession Number')" />
+                            <x-text-input id="accession_number" name="accession_number" type="text" class="block w-full mt-1"
+                                :value="old('book.accession_number', $book->accession_number)" wire:model="book.accession_number" required />
+                            <x-input-error class="mt-2" for="book.accession_number" />
+                        </div>
+
+                        {{-- Call Number --}}
+                        <div class="w-full">
+                            <x-input-label for="call_number" :value="__('Call Number')" />
+                            <x-text-input id="call_number" name="accession_number" type="text" class="block w-full mt-1"
+                                :value="old('book.call_number', $book->call_number)" wire:model="book.call_number" required />
+                            <x-input-error class="mt-2" for="book.call_number" />
+                        </div>
                     </div>
 
                     {{-- Title --}}
@@ -84,42 +94,32 @@
                     
                     {{-- Height --}}
                     <div>
-                        <x-input-label for="height" :value="__('Height')" />
+                        <x-input-label for="height" :value="__('Height (cm)')" />
                         <x-text-input id="height" name="height" type="number" class="block w-full mt-1"
                             :value="old('book.height', $book->height)" wire:model="book.height" />
                         <x-input-error class="mt-2" for="book.height" />
                     </div>
-                    
-                    {{-- Width --}}
+
                     <div>
-                        <x-input-label for="width" :value="__('Width')" />
-                        <x-text-input id="width" name="width" type="number" class="block w-full mt-1"
-                            :value="old('book.width', $book->width)" wire:model="book.width" />
-                        <x-input-error class="mt-2" for="book.width" />
+                        <x-input-label for="depth" :value="__('Price')" />
+                        <div class="flex flex-row space-x-4">
+                            <div class="flex mt-1">
+                                <span
+                                    class="inline-flex items-center px-3 text-sm text-gray-900 bg-gray-200 border border-r-0 border-gray-300 rounded-l-md dark:bg-gray-600 dark:text-gray-400 dark:border-gray-600">
+                                    ₱
+                                </span>
+                                <x-text-input id="price" name="price" type="number"
+                                    class="brounded-none rounded-r-lg bg-white border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                    :value="old('book.price', $book->price)" wire:model="book.price" required />
+                                <x-input-error class="mt-2" for="book.price" />
+                            </div>
+                    
+                        </div>
                     </div>
                     
-                    {{-- Depth --}}
-                    <div>
-                        <x-input-label for="depth" :value="__('Depth')" />
-                        <x-text-input id="depth" name="depth" type="number" class="block w-full mt-1"
-                            :value="old('book.depth', $book->depth)" wire:model="book.depth" />
-                        <x-input-error class="mt-2" for="book.depth" />
-                    </div>
                    </div>
 
-                   <div class="flex flex-row mt-4 space-x-4">
-                       <div class="flex mt-1">
-                            <span
-                                class="inline-flex items-center px-3 text-sm text-gray-900 bg-gray-200 border border-r-0 border-gray-300 rounded-l-md dark:bg-gray-600 dark:text-gray-400 dark:border-gray-600">
-                                ₱
-                            </span>
-                            <x-text-input id="price" name="price" type="number"
-                                class="brounded-none rounded-r-lg bg-white border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                :value="old('book.price', $book->price)" wire:model="book.price" required />
-                            <x-input-error class="mt-2" for="book.price" />
-                        </div>
-                    
-                    </div>
+                   
                 </x-slot>
             
                 <x-slot name="footer">

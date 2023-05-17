@@ -22,6 +22,9 @@ class BookTable extends LivewireDatatable
             Column::name('accession_number')
                 ->searchable()
                 ->label('Accession #'),
+             Column::name('call_number')
+                ->searchable()
+                ->label('Call #'),
             Column::name('title')
                 ->searchable(),
             Column::name('description')
