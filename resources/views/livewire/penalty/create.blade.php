@@ -30,7 +30,7 @@
 
                 {{-- Fee --}}
                 <div class="mt-4">
-                    <x-input-label for="fee" :value="__('Pricing Type')" />
+                    <x-input-label for="type" :value="__('Pricing Type')" />
                     <select id="type" name="type"
                         class="mt-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                         wire:model="penalty.type">
@@ -40,7 +40,19 @@
                         @endforeach
                     </select>
                 </div>
-    
+
+                {{-- Excludes From --}}
+                <div class="mt-4">
+                    <x-input-label for="type" :value="__('Exclude Role')" />
+                    <select id="type" name="type"
+                        class="mt-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                        wire:model="penalty.excludes_from">
+                        <option value="null" selected>Select Option...</option>
+                        @foreach ($remarks as $k => $v)
+                        <option value="{{ $k }}">{{ $v }}</option>
+                        @endforeach
+                    </select>
+                </div>
             </x-slot>
     
             <x-slot name="footer">

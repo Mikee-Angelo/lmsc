@@ -15,6 +15,7 @@ class Create extends Component
         'penalty.name' => 'required|string',
         'penalty.fee' => 'required',
         'penalty.type' => 'required|string',
+        'penalty.excludes_from' => 'nullable|string',
     ];
 
     public function render()
@@ -47,6 +48,7 @@ class Create extends Component
         $this->penalty->created_by = auth()->user()->id;
         $this->penalty->fee = $this->penalty->fee * 100;    
         $this->penalty->type = $this->types[$this->penalty->type];
+            $this->penalty->excludes_from = $this->penalty->excludes_from != 'null' ? $this->remarks[$this->penalty->excludes_from] : NULL;
         $saved = $this->penalty->save();
 
         if($saved) { 
