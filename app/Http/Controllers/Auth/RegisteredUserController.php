@@ -15,6 +15,9 @@ use Illuminate\View\View;
 use Illuminate\Support\Facades\DB;
 use App\Models\Penalty;
 use Spatie\Permission\Models\Permission;
+use OwenIt\Auditing\Models\Audit;
+use Carbon\Carbon;
+
 class RegisteredUserController extends Controller
 {
     /**
@@ -58,7 +61,6 @@ class RegisteredUserController extends Controller
         
             $user->givePermissionTo(Permission::all());
 
-
             $user->assignRole('Admin'); 
             
 
@@ -89,6 +91,21 @@ class RegisteredUserController extends Controller
             event(new Registered($user));
 
             Auth::login($user);
+
+            $data = [
+                'auditable_id' => auth()->user()->id,
+                'auditable_type' => "App\Models\User",
+                'event'      => "logged in",
+                'url'        => request()->fullUrl(),
+                'ip_address' => request()->getClientIp(),
+                'user_agent' => request()->userAgent(),
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
+                'user_id' => auth()->user()->id,
+            ];
+
+            //create audit trail data
+            Audit::create($data);
 
             DB::commit();
 

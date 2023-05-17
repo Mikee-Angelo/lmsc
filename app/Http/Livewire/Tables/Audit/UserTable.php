@@ -18,15 +18,14 @@ class UserTable extends LivewireDatatable
     public function columns()
     {
         return [ 
-            NumberColumn::name('id')
-                ->defaultSort('desc')
-                ->label('ID'), 
-            Column::name('event')
-                ->label('EVENT'), 
             Column::name('users.name')
                 ->label('NAME'), 
+            Column::name('event')
+                ->label('EVENT'), 
             Column::name('created_at')
+                ->defaultSort('DESC')
                 ->label('Created At')
+                ->unsortable()
         ];
     }
 }

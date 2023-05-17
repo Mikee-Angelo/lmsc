@@ -22,9 +22,6 @@ class BookTable extends LivewireDatatable
     {
         //
         return [ 
-            NumberColumn::name('id')
-                ->defaultSort('desc')
-                ->label('ID'), 
             Column::name('event')
                 ->label('EVENT'), 
             Column::name('books.title')
@@ -32,7 +29,9 @@ class BookTable extends LivewireDatatable
             Column::name('users.name')
                 ->label('Created By'), 
             Column::name('created_at')
+                ->defaultSort('desc')
                 ->label('Created At')
+                ->unsortable()
         ];
     }
 }

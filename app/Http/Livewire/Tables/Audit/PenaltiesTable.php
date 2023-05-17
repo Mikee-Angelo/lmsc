@@ -19,13 +19,10 @@ class PenaltiesTable extends LivewireDatatable
     public function columns()
     {
         return [ 
-            NumberColumn::name('id')
-                ->defaultSort('desc')
-                ->label('ID'), 
-            Column::name('event')
-                ->label('EVENT'),  
             Column::name('penalties.name')
                 ->label('Penalty Name'), 
+            Column::name('event')
+                ->label('EVENT'),  
             Column::callback(['penalties.fee'], function($fee) { 
                 if(!is_null($fee)) { 
                     return '₱ '. number_format($fee / 100, 2);
@@ -35,7 +32,9 @@ class PenaltiesTable extends LivewireDatatable
             Column::name('users.name')
                 ->label('Created By'), 
             Column::name('created_at')
+                ->defaultSort('desc')
                 ->label('Created At')
+                ->unsortable()
         ];
     }
 }

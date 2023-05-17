@@ -10,6 +10,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
 use App\Models\User;
+use OwenIt\Auditing\Models\Audit;
+use Carbon\Carbon; 
 
 class AuthenticatedSessionController extends Controller
 {
@@ -39,6 +41,21 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
+        $data = [
+            'auditable_id' => auth()->user()->id,
+            'auditable_type' => "App\Models\User",
+            'event'      => "logged in",
+            'url'        => request()->fullUrl(),
+            'ip_address' => request()->getClientIp(),
+            'user_agent' => request()->userAgent(),
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now(),
+            'user_id' => auth()->user()->id,
+        ];
+
+        //create audit trail data
+        Audit::create($data);
+
         return redirect()->intended(RouteServiceProvider::HOME);
     }
 
@@ -47,11 +64,27 @@ class AuthenticatedSessionController extends Controller
      */
     public function destroy(Request $request): RedirectResponse
     {
+        $data = [
+            'auditable_id' => auth()->user()->id,
+            'auditable_type' => "App\Models\User",
+            'event'      => "logged out",
+            'url'        => request()->fullUrl(),
+            'ip_address' => request()->getClientIp(),
+            'user_agent' => request()->userAgent(),
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now(),
+            'user_id' => auth()->user()->id,
+        ];
+
+        //create audit trail data
+        Audit::create($data);
+
         Auth::guard('web')->logout();
 
         $request->session()->invalidate();
 
         $request->session()->regenerateToken();
+        
 
         return redirect('/');
     }

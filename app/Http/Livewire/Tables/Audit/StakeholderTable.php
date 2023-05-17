@@ -19,19 +19,18 @@ class StakeholderTable extends LivewireDatatable
     public function columns()
     {
         return [ 
-            NumberColumn::name('id')
-                ->defaultSort('desc')
-                ->label('ID'), 
-            Column::name('event')
-                ->label('EVENT'),  
             Column::name('students.name')
                 ->label('Stakeholder Name'), 
+            Column::name('event')
+                ->label('EVENT'),  
             Column::name('students.course')
                 ->label('Stakeholder Course/Dept.'), 
             Column::name('users.name')
                 ->label('Created By'), 
             Column::name('created_at')
                 ->label('Created At')
+                ->defaultSort('desc')
+                ->unsortable()
         ];
     }
 }
