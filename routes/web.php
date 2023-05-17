@@ -59,6 +59,10 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/reports', [ReportController::class, 'show'])->name('reports.show');
 
+    Route::get('/audit', function() { 
+        return view('audit.show');
+    })->name('audit.show');
+
 });
 
 require __DIR__.'/auth.php';
