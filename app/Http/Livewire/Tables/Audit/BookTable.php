@@ -22,10 +22,10 @@ class BookTable extends LivewireDatatable
     {
         //
         return [ 
-            Column::name('event')
-                ->label('EVENT'), 
             Column::name('books.title')
                     ->label('Book Title'), 
+            Column::name('event')
+                ->label('EVENT'), 
             Column::name('users.name')
                 ->label('Created By'), 
             Column::name('created_at')

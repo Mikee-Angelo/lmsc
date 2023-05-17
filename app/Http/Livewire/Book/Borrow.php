@@ -10,6 +10,9 @@ use App\Models\Student;
 use App\Models\Book; 
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
+use OwenIt\Auditing\Models\Audit;
+use Illuminate\Support\Facades\DB;
+
 class Borrow extends Component
 {   
     public Transaction $transaction;
@@ -89,44 +92,69 @@ class Borrow extends Component
     }
 
     public function submit() { 
-        $this->validate();   
+        try { 
+            $this->validate();   
 
-        $duration = $this->trasaction->duration ?? 1;
+            DB::beginTransaction();
 
-        $this->transaction->book_id = $this->book_id;
-        $this->transaction->student_id = $this->student->student_id;
-        $this->transaction->duration = $duration; 
-        $this->transaction->approved_by = Auth::id();
-        $this->transaction->ends_at = Carbon::now()->addDays($duration);
-        
-        $saved = $this->transaction->save();
+            $duration = $this->trasaction->duration ?? 1;
 
-        if($saved) { 
+            $this->transaction->book_id = $this->book_id;
+            $this->transaction->student_id = $this->student->student_id;
+            $this->transaction->duration = $duration; 
+            $this->transaction->approved_by = Auth::id();
+            $this->transaction->ends_at = Carbon::now()->addDays($duration);
+            
+            $saved = $this->transaction->save();
 
-            $this->emit('updateTransactionCount');  
-        
-            //Closes the modal 
-            $this->confirmingTransactionCreate = false;
+            $data = [
+                'auditable_id' => $this->transaction->book_id,
+                'auditable_type' => "App\Models\Book",
+                'event'      => "borowwed",
+                'url'        => request()->fullUrl(),
+                'ip_address' => request()->getClientIp(),
+                'user_agent' => request()->userAgent(),
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
+                'user_id' => auth()->user()->id,
+            ];
 
-            $this->checkBorrow();
+            //create audit trail data
+            Audit::create($data);
 
-            //Emit changes on the available book 
-            $this->emit('updateAvailableCount');
+            if($saved) { 
 
-            $this->dispatchBrowserEvent('success', [
-                'type' => 'success',
-                'title' => 'Success',
-                'text' => 'Book Borrowed successfully'
-            ]);
-        } else { 
+                $this->emit('updateTransactionCount');  
+            
+                //Closes the modal 
+                $this->confirmingTransactionCreate = false;
+
+                $this->checkBorrow();
+
+                //Emit changes on the available book 
+                $this->emit('updateAvailableCount');
+
+                $this->dispatchBrowserEvent('success', [
+                    'type' => 'success',
+                    'title' => 'Success',
+                    'text' => 'Book Borrowed successfully'
+                ]);
+
+                DB::commit();
+            } else { 
+                throw Exception();
+            }
+
+            $this->resetAll();
+        } catch (_) { 
             $this->dispatchBrowserEvent('error', [
                 'type' => 'error',
                 'title' => 'Error',
                 'text' => 'Something went wrong'
             ]);
-        }
 
-        $this->resetAll();
+            DB::rollback();
+        }
     }
 
     public function resetTransaction() { 
