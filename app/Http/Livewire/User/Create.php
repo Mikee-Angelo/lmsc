@@ -33,8 +33,6 @@ class Create extends Component
      //Stores the password input value
     public $password_confirmation;
 
-    protected $listeners = ['loadSelectedRolePermissions' =>  'loadSelectedRolePermissions'];
-
     protected $rules = [ 
         'user.email' => ['required', 'string', 'email', 'max:255', 'unique:users,email'],
         'user.name' => ['required', 'string', 'max:1'],  
@@ -47,16 +45,11 @@ class Create extends Component
 
     public function mount() {
         $this->user = new User(); 
-        $this->roles = Role::all();
+        $this->roles = Role::where('name', '!=', 'Super Admin')->get();
         $this->selectedRole  = $this->roles->first()->id; 
         
         $this->permissions = Permission::all();
 
-        $this->loadSelectedRolePermissions();
-    }
-
-    public function loadSelectedRolePermissions(){ 
-        $this->selectedPermissions = Role::findById($this->selectedRole)->permissions->pluck('id')->toArray();
     }
 
     public function confirmUserCreate() { 
@@ -66,8 +59,7 @@ class Create extends Component
         $this->user = new User();
         $this->password = null;
         $this->password_confirmation = null;
-        
-        $this->loadSelectedRolePermissions();
+        $this->selectedRole = [];
     }
     
     public function submit() { 

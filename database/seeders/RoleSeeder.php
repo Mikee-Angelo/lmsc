@@ -16,9 +16,6 @@ class RoleSeeder extends Seeder
      */
     public function run()
     {
-        
-        $role = Role::create(['name' => 'Admin']); 
-
         Permission::create(['name' => 'create books']);
         Permission::create(['name' => 'view books']); 
         Permission::create(['name' => 'delete books']);
@@ -52,5 +49,8 @@ class RoleSeeder extends Seeder
         Permission::create(['name' => 'edit profile']); 
 
         Role::create(['name' => 'Assistant Librarian']);
+        Role::create(['name' => 'Admin']); 
+        Role::create(['name' => 'Super Admin']); 
+
     }
 }
