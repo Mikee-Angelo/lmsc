@@ -4,17 +4,20 @@ namespace App\Http\Livewire\Penalty;
 
 use Livewire\Component;
 use App\Models\Penalty; 
+use Spatie\Permission\Models\Role;
 
 class Create extends Component
 {   
     public Penalty $penalty;
     public $confirmingPenaltyCreate = false;
     public $types = ['FIXED', 'VARIABLE']; 
+    public $remarks = ['STUDENT', 'FACULTY'];
 
     protected $rules = [
         'penalty.name' => 'required|string',
         'penalty.fee' => 'required',
         'penalty.type' => 'required|string',
+        'penalty.excludes_from' => 'nullable|string',
     ];
 
     public function render()
@@ -24,6 +27,7 @@ class Create extends Component
 
     public function mount() { 
         $this->penalty = new Penalty();
+        $this->roles = Role::all();
     }
 
     public function buildActions() { 
@@ -47,6 +51,7 @@ class Create extends Component
         $this->penalty->created_by = auth()->user()->id;
         $this->penalty->fee = $this->penalty->fee * 100;    
         $this->penalty->type = $this->types[$this->penalty->type];
+            $this->penalty->excludes_from = $this->penalty->excludes_from != 'null' ? $this->remarks[$this->penalty->excludes_from] : NULL;
         $saved = $this->penalty->save();
 
         if($saved) { 

@@ -4,7 +4,6 @@
     <div class="flex flex-row justify-between">
         <div>
             <p class="font-normal text-gray-700 dark:text-gray-400">{{$book->title ?? ''}}</p>
-            <p class="font-normal text-gray-700 dark:text-gray-400">{{$book->edition ?? ''}}</p>
         </div>
         
         <div>

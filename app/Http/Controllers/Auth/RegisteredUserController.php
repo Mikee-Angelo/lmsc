@@ -67,6 +67,7 @@ class RegisteredUserController extends Controller
                     'name' => 'Overdue Penalty', 
                     'fee' => 2000,
                     'type' => 'FIXED',
+                    'excludes_from' => 'FACULTY',
                     'created_by' => $user->id,
                 ],
                 [

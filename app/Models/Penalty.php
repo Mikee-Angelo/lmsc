@@ -18,6 +18,7 @@ class Penalty extends Model implements Auditable
         'name', 
         'fee', 
         'type',
+        'excludes_from',
         'created_by'
     ];
 

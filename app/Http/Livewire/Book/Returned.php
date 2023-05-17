@@ -45,7 +45,7 @@ class Returned extends Component
     }
 
     public function loadPenalties() { 
-        $this->penalties = Penalty::get()->toArray();
+        $this->penalties = Penalty::where('excludes_from', '!=', $this->transaction->student_number->student_latest->remarks)->orWhereNull('excludes_from')->get()->toArray();
     }
 
     public function addPenalty() { 
@@ -55,7 +55,8 @@ class Returned extends Component
                 'transaction_id' => $this->transaction->id,
                 'penalty_id' => $this->penalties[$this->selected_penalty]['id'], 
                 'amount' => $this->penalties[$this->selected_penalty]['type'] == 'VARIABLE' ? $this->transaction->book->price : $this->amount * 100,
-                'note' => $this->notes
+                'note' => $this->notes,
+                'status' => 'Paid',
             ]);
         }
 

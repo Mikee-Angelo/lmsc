@@ -12,8 +12,27 @@
 
             <x-slot name="content">
 
+                <div class="flex flex-row space-x-4">
+                    {{-- Accetion Number --}}
+                    <div class="w-full">
+                        <x-input-label for="accession_number" :value="__('Accession Number')" />
+                        <x-text-input id="accession_number" name="accession_number" type="text" class="block w-full mt-1"
+                            :value="old('book.accession_number', $book->accession_number)" wire:model="book.accession_number"
+                            required />
+                        <x-input-error class="mt-2" for="book.accession_number" />
+                    </div>
+                
+                    {{-- Call Number --}}
+                    <div class="w-full">
+                        <x-input-label for="call_number" :value="__('Call Number')" />
+                        <x-text-input id="call_number" name="accession_number" type="text" class="block w-full mt-1"
+                            :value="old('book.call_number', $book->call_number)" wire:model="book.call_number" required />
+                        <x-input-error class="mt-2" for="book.call_number" />
+                    </div>
+                </div>
+
                 {{-- Title --}}
-                <div>
+                <div class="mt-4">
                     <x-input-label for="title" :value="__('Title')" />
                     <x-text-input id="title" name="title" type="text" class="block w-full mt-1"
                         :value="old('book.title', $book->title)" wire:model="book.title" required />
