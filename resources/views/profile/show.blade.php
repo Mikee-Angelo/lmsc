@@ -7,11 +7,15 @@
 
     <div>
         <div class="py-10 mx-auto max-w-7xl sm:px-6 lg:px-8">
-            @if (Laravel\Fortify\Features::canUpdateProfileInformation())
-                @livewire('profile.update-profile-information-form')
 
+            @if (auth()->user()->hasRole('Admin')) 
+                @if (Laravel\Fortify\Features::canUpdateProfileInformation())
+                @livewire('profile.update-profile-information-form')
+                
                 <x-section-border />
+                @endif
             @endif
+           
 
             @if (Laravel\Fortify\Features::enabled(Laravel\Fortify\Features::updatePasswords()))
                 <div class="mt-10 sm:mt-0">
