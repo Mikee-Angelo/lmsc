@@ -1,4 +1,9 @@
-<div class="flex justify-around space-x-1">
+<div class="flex space-x-4">
+
+    @if (auth()->user()->hasDirectPermission('update account'))
+        @livewire('user.update', ['name' => $name, 'user_id' => $id], key($id))
+    @endif
+   
     @if (!$is_deleted)
         @if (auth()->user()->hasDirectPermission('disable account'))
             @livewire('user.delete', ['name' => $name, 'user_id' => $id], key($id))
