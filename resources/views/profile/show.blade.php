@@ -8,22 +8,17 @@
     <div>
         <div class="py-10 mx-auto max-w-7xl sm:px-6 lg:px-8">
 
-            @if (auth()->user()->hasDirectPermission('edit profile')) 
-                @if (Laravel\Fortify\Features::canUpdateProfileInformation())
-                @livewire('profile.update-profile-information-form')
-                
-                <x-section-border />
-                @endif
+            @livewire('profile.update-profile-information-form')
+            
+            <x-section-border />
             @endif
-           
+        
 
-            @if (Laravel\Fortify\Features::enabled(Laravel\Fortify\Features::updatePasswords()))
-                <div class="mt-10 sm:mt-0">
-                    @livewire('profile.update-password-form')
-                </div>
+            <div class="mt-10 sm:mt-0">
+                @livewire('profile.update-password-form')
+            </div>
 
-                <x-section-border />
-            @endif
+            <x-section-border />
 
             <div class="mt-10 sm:mt-0">
                 @livewire('profile.logout-other-browser-sessions-form')
