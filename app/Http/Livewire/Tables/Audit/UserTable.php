@@ -12,7 +12,9 @@ class UserTable extends LivewireDatatable
     public function builder()
     {
          return Audit::query()->where('auditable_type', 'App\Models\User')
-                ->leftJoin('users', 'users.id', 'audits.auditable_id');
+                ->leftJoin('users', 'users.id', 'audits.auditable_id')
+                ->leftJoin('model_has_roles', 'users.id', 'model_has_roles.model_id')
+                ->leftJoin('roles', 'roles.id', 'model_has_roles.role_id');
     }
 
     public function columns()
@@ -20,6 +22,8 @@ class UserTable extends LivewireDatatable
         return [ 
             Column::name('users.name')
                 ->label('NAME'), 
+            Column::name('roles.name')
+                ->label('ROLE'), 
             Column::name('event')
                 ->label('EVENT'), 
             Column::name('created_at')
