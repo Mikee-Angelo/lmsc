@@ -7,6 +7,8 @@ use App\Models\User;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
 use Illuminate\Support\Facades\DB;
+use Carbon\Carbon;
+use OwenIt\Auditing\Models\Audit;
 
 class Update extends Component
 {
@@ -82,6 +84,22 @@ class Update extends Component
             $this->user->givePermissionTo($this->selectedPermissions);
 
             $this->user->assignRole($this->selectedRole);
+
+            $data = [
+                'auditable_id' => $this->user->id,
+                'auditable_type' => "App\Models\User",
+                'event'      => "updated",
+                'url'        => request()->fullUrl(),
+                'ip_address' => request()->getClientIp(),
+                'user_agent' => request()->userAgent(),
+                'created_at' => Carbon::now('Asia/Manila'),
+                'updated_at' => Carbon::now('Asia/Manila'),
+                'user_id' => auth()->user()->id,
+            ];
+
+            //create audit trail data
+            Audit::create($data);
+
 
             if($saved) { 
                 //Refreshes the livewire datatable

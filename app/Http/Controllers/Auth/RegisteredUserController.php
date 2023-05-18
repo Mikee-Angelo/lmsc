@@ -48,7 +48,7 @@ class RegisteredUserController extends Controller
             DB::beginTransaction();
             
             $request->validate([
-                'name' => ['required', 'string', 'max:255'],
+                'name' => ['required', 'string', 'max:255', 'alpha_dash'],
                 'email' => ['required', 'string', 'email', 'max:255', 'unique:'.User::class, 'regex:/(.*)@subicbaycolleges\.com/i'],
                 'password' => ['required', 'confirmed', Rules\Password::defaults()],
             ]);
