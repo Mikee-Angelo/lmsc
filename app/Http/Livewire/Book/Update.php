@@ -25,8 +25,6 @@ class Update extends Component
         'book.year_published' => 'required|string', 
         'book.pages' => 'required|numeric', 
         'book.height' => 'nullable|numeric',
-        'book.width' => 'nullable|numeric',
-        'book.depth' => 'nullable|numeric',
         'book.price' => 'required|numeric',
     ];
 
