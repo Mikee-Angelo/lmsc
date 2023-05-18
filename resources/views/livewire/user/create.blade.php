@@ -17,7 +17,7 @@
                 <div class="mt-4">
                     <x-input-label for="name" :value="__('Full Name')" />
                     <x-text-input id="name" name="name" type="text" class="block w-full mt-1" :value="old('user.name', $user->name)"
-                        wire:model="user.name" required />
+                        wire:model="user.name" pattern="^[a-zA-Z\s]+$" required />
                     <x-input-error class="mt-2" for="user.name" />
                 </div>
                 

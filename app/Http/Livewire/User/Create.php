@@ -37,7 +37,7 @@ class Create extends Component
 
     protected $rules = [ 
         'user.email' => ['required', 'string', 'email', 'max:255', 'unique:users,email'],
-        'user.name' => ['required', 'string', 'max:1'],  
+        'user.name' => ['required', 'string', 'max:1', 'alpha_dash'],  
     ];
 
     public function render()
