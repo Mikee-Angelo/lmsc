@@ -12,8 +12,10 @@ class PenaltiesTable extends LivewireDatatable
     public function builder()
     {
         return Audit::query()->where('auditable_type', 'App\Models\Penalty')
-            ->leftJoin('users', 'users.id', 'audits.user_id')
-            ->leftJoin('penalties', 'penalties.id', 'audits.auditable_id');
+            ->leftJoin('penalties', 'penalties.id', 'audits.auditable_id')
+            ->leftJoin('users', 'users.id', 'penalties.created_by')
+            ->leftJoin('model_has_roles', 'users.id', 'model_has_roles.model_id')
+            ->leftJoin('roles', 'roles.id', 'model_has_roles.role_id');
     }
 
     public function columns()
@@ -31,6 +33,8 @@ class PenaltiesTable extends LivewireDatatable
                 ->label('Penalty Fee'), 
             Column::name('users.name')
                 ->label('Created By'), 
+            Column::name('roles.name')
+                ->label('Role'),
             Column::name('created_at')
                 ->defaultSort('desc')
                 ->label('Created At')
