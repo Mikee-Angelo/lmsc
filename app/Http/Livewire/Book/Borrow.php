@@ -110,7 +110,7 @@ class Borrow extends Component
             $data = [
                 'auditable_id' => $this->transaction->book_id,
                 'auditable_type' => "App\Models\Book",
-                'event'      => "borowwed",
+                'event'      => "borrowed",
                 'url'        => request()->fullUrl(),
                 'ip_address' => request()->getClientIp(),
                 'user_agent' => request()->userAgent(),
