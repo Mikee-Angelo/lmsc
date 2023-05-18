@@ -106,8 +106,8 @@ class Returned extends Component
                 'url'        => request()->fullUrl(),
                 'ip_address' => request()->getClientIp(),
                 'user_agent' => request()->userAgent(),
-                'created_at' => Carbon::now(),
-                'updated_at' => Carbon::now(),
+                'created_at' => Carbon::now('Asia/Manila'),
+                'updated_at' => Carbon::now('Asia/Manila'),
                 'user_id' => auth()->user()->id,
             ];
 
